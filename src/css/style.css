@@ -1,0 +1,17 @@
+/* /////////////////////////////////////////////////////*/
+/*[ importation du dossier _base ]*/
+@import url("_base/reset.css");
+
+/* /////////////////////////////////////////////////////*/
+/*[ importation du dossier _components ]*/
+@import url("_components/hero.css");
+@import url("_components/landingPage.css");
+@import url("_components/menu.css");
+@import url("_components/nav.css");
+@import url("_components/section1.css");
+
+/* /////////////////////////////////////////////////////*/
+/*[ importation du dossier _layout ]*/
+@import url("_layout/structure.css");
+@import url("_layout/variable.css");
+@import url("_layout/typo.css");
