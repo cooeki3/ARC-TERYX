@@ -9,8 +9,8 @@ gsap.registerPlugin(SplitText, ScrollTrigger, CustomEase);
 function Nav() {
 
 
-    //Lang. Dropdown hover animation
     useEffect(() => {
+        //Lang. Dropdown hover animation
         const langDropdown = document.querySelector(".nav__lang-dropdown");
         const langDropdownBelow = document.querySelector(".nav__lang-dropdown-below");
         const customEase = CustomEase.create(
@@ -22,14 +22,21 @@ function Nav() {
             mask: 'words',
         })
 
-        //Solve the maks being not large enough and cutting 1-2px off the right of every li
+        //Solve the mask not being large enough and cutting 1-2px off the right of every li
         lang__navItems.words.forEach(word => {
             const mask = word.parentElement;
             mask.style.paddingRight = '0.1em';
             mask.style.marginRight = '-0.1em';
         });
 
+        //Set les cercle pour animation d'entrée et de sortie
+        gsap.set('.dropdown__circle-01', {
+            yPercent: -100
+        })
 
+        gsap.set('.dropdown__circle-02', {
+            yPercent: 100
+        })
 
         const animateWidth = (width) => {
             gsap.to(langDropdown, {
@@ -45,7 +52,8 @@ function Nav() {
                 overwrite: "auto"
             });
         };
-        const animateHeight = (height, radius, enter) => {
+
+        const animateHeight = (height, radius, padding, enter) => {
             gsap.to(langDropdownBelow, {
                 height: height,
                 borderRadius: radius,
@@ -53,6 +61,15 @@ function Nav() {
                 ease: customEase,
                 overwrite: "auto"
             });
+            //Ajout de 5px de padding pour simuler le margin des autres boutons
+            gsap.to(langDropdown, {
+                padding: padding,
+                duration: 0.9,
+                ease: customEase,
+                overwrite: "auto"
+            });
+
+            //Anim. de l'apparition des autres langues entrée
             if (enter) {
                 gsap.fromTo(lang__navItems.words,
                     {
@@ -67,16 +84,94 @@ function Nav() {
                         overwrite: true,
                     }
                 )
+
+                //Animation des cercles entrée
+                //Cleanup
+                gsap.killTweensOf('.dropdown__circle-01');
+                gsap.killTweensOf('.dropdown__circle-02');
+                gsap.killTweensOf('.dropdown__circles');
+                const tl = gsap.timeline();
+                tl.to('.dropdown__circle-01', {
+                    yPercent: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0)
+
+                tl.to('.dropdown__circle-02', {
+                    yPercent: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0)
+
+                tl.to('.dropdown__circles', {
+                    rotate: '90deg',
+                    duration: 0.5,
+                    ease: 'power3.out',
+                }, 0)
+
+                tl.to('.dropdown__circle-01', {
+
+                    yPercent: -100,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0.4)
+
+                tl.to('.dropdown__circle-02', {
+
+                    yPercent: 100,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0.4)
+            }
+
+            else {
+                //Animation des cercles sortie
+                //Cleanup
+                gsap.killTweensOf('.dropdown__circle-01');
+                gsap.killTweensOf('.dropdown__circle-02');
+                gsap.killTweensOf('.dropdown__circles');
+                const tl = gsap.timeline();
+
+                tl.to('.dropdown__circle-01', {
+                    yPercent: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0)
+
+                tl.to('.dropdown__circle-02', {
+                    yPercent: 0,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0)
+
+                tl.to('.dropdown__circles', {
+                    rotate: '0deg',
+                    duration: 0.5,
+                    ease: 'power3.out',
+                }, 0.4)
+
+                tl.to('.dropdown__circle-01', {
+                    yPercent: -100,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0.4)
+
+                tl.to('.dropdown__circle-02', {
+                    yPercent: 100,
+                    duration: 1,
+                    ease: 'power3.out',
+                }, 0.4)
             }
         };
 
+        //Apelle des animations pour ouvrir le dropdown languages
         const onEnter = () => {
-            animateWidth(200);
-            animateHeight(455, '1.3rem', true);
+            animateWidth(170);
+            animateHeight(475, '0.8rem', '1rem 1rem', true);
         }
         const onLeave = () => {
             animateWidth(110);
-            animateHeight(40, '1.3rem', false);
+            animateHeight(40, '1.3rem', '0.7rem 1rem', false);
         }
 
         langDropdownBelow.addEventListener("mouseenter", onEnter);
@@ -93,7 +188,10 @@ function Nav() {
         <nav className='section-nav' id='nav'>
             <div className='nav__lang-dropdown '>
                 <div className="dropdown__text">Français</div>
-                <span className='dropdown__circle'></span>
+                <div className="dropdown__circles">
+                    <span className='dropdown__circle-01'></span>
+                    <span className='dropdown__circle-02'></span>
+                </div>
             </div>
             <div className='nav__lang-dropdown-below'>
                 <ul className="dropdown__lang-container">
@@ -113,5 +211,4 @@ function Nav() {
         </nav>
     )
 }
-
 export default Nav;

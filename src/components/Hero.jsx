@@ -12,7 +12,9 @@ function Hero() {
 
 
   return (
-    <div className='section-hero'></div>
+    <div className='section-hero'>
+      <img src="../image/s" alt="" />
+    </div>
   )
 }
 
