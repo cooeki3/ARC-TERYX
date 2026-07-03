@@ -1,0 +1,113 @@
+.section-footer {
+  position: relative;
+  animation: gradient-diagonal 8s ease alternate infinite;
+  margin: 80px 60px;
+  border-radius: 20px;
+  background-color: var(--beige);
+
+  /* background: linear-gradient(45deg, #b1af99 40%, #dad8cd 50%,  #b1af99 60%);
+  background-size: 200% 200%; */
+  padding: 40px;
+  width: auto;
+  min-height: calc(100vh - 160px);
+  overflow: hidden;
+  color: white;
+  @keyframes gradient-diagonal {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
+  }
+
+  .footer-row-1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .footer-logo {
+    object-fit: contain;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 90px;
+  }
+
+  .footer-col {
+    display: flex;
+    flex-direction: column;
+    h4 {
+      color: #fff;
+      font-weight: var(--font-medium);
+      font-size: 1.5rem;
+      font-family: var(--font-body);
+    }
+    p {
+      color: #fff;
+      font-weight: var(--font-regular);
+      font-size: 1.25rem;
+      font-family: var(--font-body);
+    }
+  }
+  .footer-newsletter {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border-radius: 26px;
+    background-color: var(--white);
+    padding: 20px;
+    width: 460px;
+    h3 {
+      color: var(--black);
+      font-weight: var(--font-medium);
+      font-size: 1.5rem;
+      font-family: var(--font-body);
+    }
+    p {
+      color: var(--light-gray);
+      font-weight: 300;
+      font-size: 1.125rem;
+      font-family: var(--font-body);
+    }
+    .input-container {
+      display: flex;
+      position: relative;
+      justify-content: center;
+      align-items: center;
+    }
+
+    input {
+      border-radius: 999px;
+      background-color: var(--color-whitesmoke);
+      padding: 16px 20px;
+      width: 100%;
+      color: var(--black);
+    }
+    button {
+      display: flex;
+      position: absolute;
+      right: 0;
+      justify-content: center;
+      align-items: center;
+      transition: all 0.1s ease;
+      border-radius: 999px;
+      background-color: var(--beige);
+      width: 60px;
+      height: 100%;
+      user-select: none;
+
+      &:hover {
+        background-color: #d1d0c3;
+      }
+      &:active {
+        scale: 0.95;
+      }
+    }
+  }
+}

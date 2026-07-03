@@ -1,33 +1,33 @@
 .section-lang__nav {
   display: flex;
   position: fixed;
-  padding: 0 20px;
-  margin-top: 20px;
   top: 0;
   justify-content: end;
+  z-index: 1000;
+  margin-top: 20px;
+  padding: 0 60px;
   width: 100%;
   height: fit-content;
   user-select: none;
-  z-index: 1000;
 
   .nav__lang-dropdown {
-    pointer-events: none;
     display: flex;
     position: relative;
     justify-content: space-between;
     align-items: center;
     gap: 0.5rem;
+    z-index: 100;
     border-radius: 30px;
     padding: 0.7rem 1rem;
-    height: 40px;
     width: 110px;
-    z-index: 100;
+    height: 40px;
+    pointer-events: none;
   }
 
   .dropdown__text {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     color: white;
     font-size: 1.1rem;
     letter-spacing: var(--ls-small);
@@ -38,10 +38,10 @@
     position: relative;
     justify-content: center;
     align-items: center;
-    width: 5px;
-    height: 12px;
     transform-origin: 50% 50%;
     will-change: transform;
+    width: 5px;
+    height: 12px;
   }
 
   .dropdown__circle-01,
@@ -49,45 +49,46 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
+    will-change: transform;
     border-radius: 100%;
     background-color: white;
     width: 4px;
     height: 4px;
-    will-change: transform;
   }
 
   .nav__lang-dropdown-below {
+    position: absolute;
     gap: 0.75rem;
+    z-index: 99;
+    backdrop-filter: blur(20px);
     border-radius: 1.8rem;
     background-color: rgba(22, 22, 22, 0.527);
-    height: 40px;
     width: 110px;
-    z-index: 99;
-    position: absolute;
+    height: 40px;
     overflow: hidden;
-    backdrop-filter: blur(20px);
   }
 
   .dropdown__lang-container {
-    list-style: none;
     display: flex;
-    justify-content: space-between;
     flex-direction: column;
+    justify-content: space-between;
     margin-top: 40px;
+    list-style: none;
 
     li {
       display: block;
+      cursor: pointer;
+      margin: 0 5px;
+      padding: 0.4rem 0.7rem;
       color: white;
       font-size: 1.1rem;
       letter-spacing: var(--ls-small);
       white-space: nowrap;
-      padding: 0.4rem 0.7rem;
-      margin: 0 5px;
     }
 
     li:hover {
-      background-color: rgba(146, 146, 146, 0.527);
       border-radius: 10px;
+      background-color: rgba(146, 146, 146, 0.527);
     }
   }
 }

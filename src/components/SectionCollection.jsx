@@ -21,10 +21,13 @@ function SectionCollection() {
       resistance: true,
       resistanceRatio: 0.85,
 
-      grabCursor: true,
       navigation: {
         nextEl: '.swiper-btn-next',
         prevEl: '.swiper-btn-prev',
+      },
+      scrollbar: {
+        el: '.swiper-scrollbar',
+        draggable: true,
       },
     });
     return () => swiper.destroy(true, true);
@@ -33,8 +36,8 @@ function SectionCollection() {
   return (
     <div className='section-collection'>
       <div className='section-collection-text'>
-        <h1 className='section-collection-h1'>Spring summer ‘26</h1>
-        <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div>
+        <h1 className='section-collection-h1'>Spring summer ‘26 collection</h1>
+        {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}
         <button className='section-collection-button'>Learn more</button>
       </div>
 
@@ -118,15 +121,13 @@ function SectionCollection() {
         </div>
 
         <div className="swiper-pagination">
-          <div class="swiper-scrollbar">hey</div>
+          <div className="swiper-scrollbar"></div>
           <div className="arrows-controls">
             <div className="swiper-btn-prev">  <span className="material-symbols-outlined">arrow_back</span></div>
             <div className="swiper-btn-next">  <span className="material-symbols-outlined">arrow_forward</span></div>
           </div>
         </div>
-
       </div>
-
     </div>
   )
 }

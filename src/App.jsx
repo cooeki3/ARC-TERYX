@@ -13,6 +13,7 @@ import Hero from './components/Hero.jsx';
 import LangNav from './components/LangNav.jsx';
 import MenuNav from './components/MenuNav.jsx';
 import SectionCollection from './components/SectionCollection.jsx';
+import Footer from './components/Footer.jsx';
 function App() {
 
   const lenis = useLenis((lenis) => { })
@@ -38,6 +39,7 @@ function App() {
         <MenuNav />
         <LangNav />
         <SectionCollection />
+        <Footer />
       </section>
     </ReactLenis>
   )
