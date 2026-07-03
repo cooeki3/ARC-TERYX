@@ -6,9 +6,9 @@
 /*[ importation du dossier _components ]*/
 @import url("_components/hero.css");
 @import url("_components/landingPage.css");
-@import url("_components/menu.css");
-@import url("_components/nav.css");
-@import url("_components/section1.css");
+@import url("_components/langNav.css");
+@import url("_components/menuNav.css");
+@import url("_components/sectionCollection.css");
 
 /* /////////////////////////////////////////////////////*/
 /*[ importation du dossier _layout ]*/

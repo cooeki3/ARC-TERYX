@@ -9,5 +9,18 @@ body {
 }
 
 html {
+  overflow: auto;
   font-size: 16px;
+}
+/* Remove scrollbar */
+html,
+body {
+  overflow: auto;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge old */
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
 }

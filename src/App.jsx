@@ -10,10 +10,9 @@ import 'lenis/dist/lenis.css'
 
 import LandingPage from './components/LandingPage.jsx';
 import Hero from './components/Hero.jsx';
-import Menu from './components/Menu.jsx';
-import Section1 from './components/Section1.jsx';
-
-import Nav from './components/Nav.jsx';
+import LangNav from './components/LangNav.jsx';
+import MenuNav from './components/MenuNav.jsx';
+import SectionCollection from './components/SectionCollection.jsx';
 function App() {
 
   const lenis = useLenis((lenis) => { })
@@ -36,9 +35,9 @@ function App() {
       <section className="page-wrapper">
         <Hero />
         <LandingPage />
-        <Menu></Menu>
-        <Nav />
-        <Section1 />
+        <MenuNav />
+        <LangNav />
+        <SectionCollection />
       </section>
     </ReactLenis>
   )

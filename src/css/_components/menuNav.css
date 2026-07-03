@@ -1,0 +1,98 @@
+.section-menu__nav {
+  display: flex;
+  position: fixed;
+  padding: 0 20px;
+  margin-bottom: 20px;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
+  width: 100%;
+  height: fit-content;
+  user-select: none;
+  z-index: 1000;
+
+  .nav__menu-dropdown {
+    pointer-events: none;
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.5rem;
+    border-radius: 30px;
+    padding: 0.7rem 1rem;
+    height: 40px;
+    width: 95px;
+    z-index: 100;
+  }
+  .dropdown__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.1rem;
+    letter-spacing: var(--ls-small);
+  }
+
+  .dropdown__circles {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 5px;
+    height: 12px;
+    transform-origin: 50% 50%;
+    will-change: transform;
+  }
+
+  .dropdown__circle-01,
+  .dropdown__circle-02 {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 100%;
+    background-color: white;
+    width: 4px;
+    height: 4px;
+    will-change: transform;
+  }
+
+  .nav__menu-dropdown-below {
+    gap: 0.75rem;
+    border-radius: 1.8rem;
+    background-color: rgba(22, 22, 22, 0.527);
+    height: 40px;
+    width: 95px;
+    z-index: 99;
+    position: absolute;
+    bottom: 0;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+  }
+
+  .dropdown__menu-container {
+    list-style: none;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: flex-end;
+    margin-bottom: 60px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .dropdown__menu-container li {
+    display: block;
+    color: white;
+    font-size:2rem;
+    letter-spacing: var(--ls-small);
+    white-space: nowrap;
+    padding: 0.4rem 0.7rem;
+    margin: 0px 5px;
+  }
+
+  .dropdown__menu-container li:hover {
+    background-color: rgba(146, 146, 146, 0.527);
+    border-radius: 10px;
+  }
+}

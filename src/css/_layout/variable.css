@@ -1,32 +1,31 @@
 :root {
   /* Colors */
-  /* --bg: #ffffff;
-  --accent: #3f3f3f;
-  --accent-02: #6d6139;
-  --soft-accent: #e7caab;
-  --text: #ffffff;
-  --muted: #b0b0b0; */
+  --light-gray: #686868;
+  --light-white-gray: #eaeaea;
 
-  /* Text */
+  /* Fonts */
   --font-heading: "Creato Display", sans-serif;
   --font-body: "Creato Display", sans-serif;
   --font-italic: "Apple Garamond Italic", serif;
 
+  /* Font-sizes */
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
   --text-xl: 2rem;
-  --text-xxl: 5rem;
+  --text-xxl: 4rem;
   --text-xxxl: 8rem;
 
+  /* Weights */
   --font-small: 200;
   --font-regular: 400;
   --font-medium: 500;
   --font-bold: 700;
 
+  /* Letter-space */
   --ls-small: -1px;
-  /* Other */
-  /* --radius: 0px; */
+
+  /* Others */
   --radius: 100px;
   /* --radius-menu: 0px; */
   --radius-menu: 35px;
