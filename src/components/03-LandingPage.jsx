@@ -1,17 +1,15 @@
-
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
+// React imports
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import { CustomEase } from 'gsap/CustomEase';
-import { useLenis } from 'lenis/react'
-import ScrollTrigger from 'gsap/ScrollTrigger.js';
+
+// GSAP imports
+import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 // import { GSDevTools } from 'gsap/GSDevTools';
-gsap.registerPlugin(
-    SplitText,
-    ScrollTrigger,
-    CustomEase,
-    // GSDevTools
-);
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 function LandingPage() {
     // const lenis = useLenis()
@@ -26,7 +24,6 @@ function LandingPage() {
 
     return (
         <div className='section-landing-page'></div>
-
     )
 }
 

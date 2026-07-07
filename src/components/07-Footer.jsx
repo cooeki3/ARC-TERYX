@@ -1,22 +1,26 @@
+// React imports
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+// Other imports
+import { useLenis } from 'lenis/react';
+
+// GSAP imports
 import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
+import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
-import { useEffect, useLayoutEffect, useRef, useState, } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger.js';
-gsap.registerPlugin(SplitText, ScrollTrigger, useEffect);
 
-
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 function Footer() {
-
-
 
   return (
     <footer className='section-footer'>
       <div className="footer-row-1">
         <a href=""><img src="../../images/ARCTERYX_logo.png" alt="Arc'teryx logo" className="footer-logo" /></a>
         <div className='footer-links'>
-          <div class="footer-col">
+          <div className="footer-col link-hover-anim">
             <h4>Shop</h4>
             <a href="#">New Arrivals</a>
             <a href="#">Best Sellers</a>
@@ -30,7 +34,7 @@ function Footer() {
             <a href="#">Sale</a>
           </div>
 
-          <div class="footer-col">
+          <div className="footer-col link-hover-anim">
             <h4>Collections</h4>
             <a href="#">Winter Collection</a>
             <a href="#">Weekend Camping</a>
@@ -43,7 +47,7 @@ function Footer() {
             <a href="#">Premium Series</a>
           </div>
 
-          <div class="footer-col">
+          <div className="footer-col link-hover-anim">
             <h4>Company</h4>
             <a href="#">About Us</a>
             <a href="#">Our Story</a>
@@ -57,7 +61,7 @@ function Footer() {
             <a href="#">Store Locator</a>
           </div>
 
-          <div class="footer-col">
+          <div className="footer-col link-hover-anim">
             <h4>Help</h4>
             <a href="#">Contact Us</a>
             <a href="#">FAQs</a>
@@ -77,19 +81,35 @@ function Footer() {
           <p>Keep up to date with new collections, events, discounts and more.</p>
           <div className="input-container">
             <input type="text" placeholder='Your email adress' />
-            <button><span class="material-symbols-outlined">
+            <button><span className="material-symbols-outlined">
               arrow_outward
             </span></button>
           </div>
         </div>
-
       </div>
 
       <div className="footer-row-2 ">
-        <div className="footer-socials">
-          <img src="../../images/Icon_Instagram.png" alt="Instagram icon" />
-          <img src="../../images/Icon_Facebook.png" alt="Facebook icon" />
-          <img src="../../images/Icon_X.png" alt="X icon" />
+        <div className="footer-row-2-1">
+          <div className="footer-socials">
+            <a href=""><img src="../../images/Icon_Instagram.png" alt="Instagram icon" /></a>
+            <a href=""><img src="../../images/Icon_Facebook.png" alt="Facebook icon" /></a>
+            <a href=""><img src="../../images/Icon_X.png" alt="X icon" /></a>
+          </div>
+          <button className="footer-button">
+            <span className='button-text'>Contact us</span>
+            <span className="material-symbols-outlined">
+              arrow_outward
+            </span></button>
+        </div>
+        <div className="footer-row-2-2">
+          <hr />
+        </div>
+
+        <div className="bottom-links link-hover-anim">
+          <a href="">Privacy policy</a>
+          <a href="">Cookie policy</a>
+          <a href="">Terms & conditions</a>
+          <a href="">Site by Alexandre Gratton</a>
         </div>
       </div>
     </footer>

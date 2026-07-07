@@ -1,26 +1,28 @@
+// React imports
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import { useEffect, useLayoutEffect, useRef, useState, } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger.js';
-
-// Swiper
+// Other imports
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
+// GSAP imports
+import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
 
-gsap.registerPlugin(SplitText, ScrollTrigger);
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 function SectionCollection() {
-
   useEffect(() => {
+    //Initialize the swiper
     const swiper = new Swiper('.swiper', {
       slidesPerView: 'auto',
       spaceBetween: 20,
       speed: 500,
       resistance: true,
       resistanceRatio: 0.85,
-
       navigation: {
         nextEl: '.swiper-btn-next',
         prevEl: '.swiper-btn-prev',
@@ -30,6 +32,93 @@ function SectionCollection() {
         draggable: true,
       },
     });
+
+
+    // Tl for anim
+    const tl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".section-collection-text",
+        start: "top bottom",
+        toggleActions: "restart none none reset"
+      }
+    })
+
+    // H1 anim
+    tl.fromTo(
+      ".section-collection-text",
+      {
+        yPercent: 100,
+        opacity: 0,
+      },
+      {
+        yPercent: 0,
+        opacity: 1,
+        duration: 1.1,
+        ease: "power4.out",
+        stagger: 0.08,
+      }, 0
+    )
+
+    // Slide up anim
+    tl.fromTo(
+      ".swiper-slide",
+      {
+        yPercent: 30,
+      },
+      {
+        yPercent: 0,
+        duration: 1.1,
+        ease: "power4.out",
+        stagger: 0.04,
+      }, 0
+    )
+
+    // Text opacity anim
+    tl.fromTo(
+      ".section-collection-card-text",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        delay: 0.5,
+        duration: 0.7,
+        ease: "power4.out",
+        stagger: 0.04,
+      }, 0
+    )
+
+    // Add button scale anim
+    tl.fromTo(
+      ".section-collection-product-add-button",
+      {
+        opacity: 0,
+        scale: 0,
+      },
+      {
+        opacity: 1,
+        scale: 1,
+        delay: 0.5,
+        duration: 1.6,
+        ease: "elastic.out(1.5,0.75)",
+        stagger: 0.08,
+        clearProps: "transform"
+      }, 0
+    )
+    // Pagination y and opacity animation
+    tl.fromTo(
+      ".swiper-pagination",
+      {
+        opacity: 0,
+      },
+      {
+        opacity: 1,
+        delay: 0.4,
+        duration: 0.3,
+        ease: "power4.out",
+      }, 0
+    )
+
     return () => swiper.destroy(true, true);
   }, [])
 

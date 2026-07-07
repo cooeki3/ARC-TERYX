@@ -1,29 +1,32 @@
-
-import { gsap } from 'gsap';
-import { SplitText } from 'gsap/SplitText';
-import CustomEase from 'gsap/CustomEase';
+// React imports
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
-import ScrollTrigger from 'gsap/ScrollTrigger.js';
-gsap.registerPlugin(SplitText, ScrollTrigger, CustomEase);
 
-function MenuNav() {
+// GSAP imports
+import { gsap } from 'gsap';
+import CustomEase from 'gsap/CustomEase';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+import { SplitText } from 'gsap/SplitText';
+
+// Register GSAP plugins
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 
+function LangNav() {
     useEffect(() => {
-        //menu. Dropdown hover animation
-        const menuDropdown = document.querySelector(".nav__menu-dropdown");
-        const menuDropdownBelow = document.querySelector(".nav__menu-dropdown-below");
+        //Lang. Dropdown hover animation
+        const langDropdown = document.querySelector(".nav__lang-dropdown");
+        const langDropdownBelow = document.querySelector(".nav__lang-dropdown-below");
         const customEase = CustomEase.create(
             "custom",
             "M0,0 C0.11,0.494 0.135,0.637 0.266,0.798 0.368,0.924 0.504,1 1,1"
         );
-        const menu__navItems = new SplitText('.dropdown__menu-container > li', {
+        const lang__navItems = new SplitText('.dropdown__lang-container > li', {
             type: 'words',
             mask: 'words',
         })
 
         //Solve the mask not being large enough and cutting 1-2px off the right of every li
-        menu__navItems.words.forEach(word => {
+        lang__navItems.words.forEach(word => {
             const mask = word.parentElement;
             mask.style.paddingRight = '0.1em';
             mask.style.marginRight = '-0.1em';
@@ -39,41 +42,41 @@ function MenuNav() {
         })
 
         const animateWidth = (width) => {
-            gsap.to(menuDropdown, {
+            gsap.to(langDropdown, {
                 width: width,
-                duration: 0.6,
+                duration: 0.9,
                 ease: customEase,
                 overwrite: "auto"
             });
-            gsap.to(menuDropdownBelow, {
+            gsap.to(langDropdownBelow, {
                 width: width,
-                duration: 0.6,
+                duration: 0.9,
                 ease: customEase,
                 overwrite: "auto"
             });
         };
 
         const animateHeight = (height, radius, padding, enter) => {
-            gsap.to(menuDropdownBelow, {
+            gsap.to(langDropdownBelow, {
                 height: height,
                 borderRadius: radius,
-                duration: 0.4,
+                duration: 0.6,
                 ease: customEase,
                 overwrite: "auto"
             });
             //Ajout de 5px de padding pour simuler le margin des autres boutons
-            gsap.to(menuDropdown, {
+            gsap.to(langDropdown, {
                 padding: padding,
                 duration: 0.9,
                 ease: customEase,
                 overwrite: "auto"
             });
 
-            //Anim. de l'apparition des autres menuues entrée
+            //Anim. de l'apparition des autres langues entrée
             if (enter) {
-                gsap.fromTo(menu__navItems.words,
+                gsap.fromTo(lang__navItems.words,
                     {
-                        yPercent: 100,
+                        yPercent: 150,
                         opacity: 1,
                     },
                     {
@@ -164,46 +167,51 @@ function MenuNav() {
             }
         };
 
-        //Apelle des animations pour ouvrir le dropdown menu
+        //Apelle des animations pour ouvrir le dropdown languages
         const onEnter = () => {
-            animateWidth(250);
-            animateHeight(368, '0.8rem', '1rem 1rem', true); //Ajouter ou soustraire 62px au height du menu pour ajouter ou enlever un item du menu
+            animateWidth(170);
+            animateHeight(478, '0.8rem', '1rem 1rem', true);
         }
         const onLeave = () => {
-            animateWidth(95);
+            animateWidth(110);
             animateHeight(40, '1.3rem', '0.7rem 1rem', false);
         }
 
-        menuDropdownBelow.addEventListener("mouseenter", onEnter);
-        menuDropdownBelow.addEventListener("mouseleave", onLeave);
+        langDropdownBelow.addEventListener("mouseenter", onEnter);
+        langDropdownBelow.addEventListener("mouseleave", onLeave);
 
         return () => {
-            menuDropdownBelow.removeEventListener("mouseenter", onEnter);
-            menuDropdownBelow.removeEventListener("mouseleave", onLeave);
-            menu__navItems.revert();
+            langDropdownBelow.removeEventListener("mouseenter", onEnter);
+            langDropdownBelow.removeEventListener("mouseleave", onLeave);
+            lang__navItems.revert();
         };
     }, []);
 
     return (
-
-        <nav className='section-menu__nav' id='nav'>
-            <div className='nav__menu-dropdown '>
-                <div className="dropdown__text">Menu</div>
+        <nav className='section-lang__nav' id='nav'>
+            <div className='nav__lang-dropdown '>
+                <div className="dropdown__text">Français</div>
                 <div className="dropdown__circles">
                     <span className='dropdown__circle-01'></span>
                     <span className='dropdown__circle-02'></span>
                 </div>
             </div>
-            <div className='nav__menu-dropdown-below'>
-                <ul className="dropdown__menu-container">
-                    <li>Home</li>
-                    <li>About</li>
-                    <li>Services</li>
-                    <li>Projects</li>
-                    <li>Contact</li>
+            <div className='nav__lang-dropdown-below'>
+                <ul className="dropdown__lang-container">
+                    <li>English</li>
+                    <li>Español</li>
+                    <li>Deutsch</li>
+                    <li>Italiano</li>
+                    <li>Polski</li>
+                    <li>日本語</li>
+                    <li>中文(中国)</li>
+                    <li>Nederlands</li>
+                    <li>Português</li>
+                    <li>हिन्दी</li>
+                    <li>English(Hong Kong)</li>
                 </ul>
             </div>
         </nav>
     )
 }
-export default MenuNav;
+export default LangNav;

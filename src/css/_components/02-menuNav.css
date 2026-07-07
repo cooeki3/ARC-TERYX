@@ -8,7 +8,7 @@
   z-index: 1000;
   margin-bottom: 20px;
   padding: 0 20px;
-  width: 100%;
+  width: fit-content;
   height: fit-content;
   user-select: none;
 
@@ -87,7 +87,7 @@
     margin: 0px 5px;
     padding: 0.4rem 0.7rem;
     color: white;
-    font-size:2rem;
+    font-size: 2rem;
     letter-spacing: var(--ls-small);
     white-space: nowrap;
   }

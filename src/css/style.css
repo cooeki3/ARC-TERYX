@@ -4,12 +4,13 @@
 
 /* /////////////////////////////////////////////////////*/
 /*[ importation du dossier _components ]*/
-@import url("_components/hero.css");
-@import url("_components/landingPage.css");
-@import url("_components/langNav.css");
-@import url("_components/menuNav.css");
-@import url("_components/sectionCollection.css");
-@import url("_components/footer.css");
+@import url("_components/01-langNav.css");
+@import url("_components/02-menuNav.css");
+@import url("_components/03-landingPage.css");
+@import url("_components/04-hero.css");
+@import url("_components/05-sectionCollection.css");
+@import url("_components/06-sectionQuote.css");
+@import url("_components/07-footer.css");
 
 /* /////////////////////////////////////////////////////*/
 /*[ importation du dossier _layout ]*/
