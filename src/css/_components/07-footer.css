@@ -16,17 +16,6 @@
   min-height: calc(100vh - 160px);
   overflow: hidden;
   color: white;
-  @keyframes gradient-diagonal {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    100% {
-      background-position: 0% 0%;
-    }
-  }
 
   .footer-row-1 {
     display: flex;
