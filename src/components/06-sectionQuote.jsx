@@ -187,9 +187,9 @@ function Quote() {
       }, 1 + i * 0.10);
 
     });
-    GSDevTools.create({
-      animation: tl,
-    });
+    // GSDevTools.create({
+    //   animation: tl,
+    // });
 
     // Y and mask anim.
     gsap.fromTo(quoteSplit.lines, {
