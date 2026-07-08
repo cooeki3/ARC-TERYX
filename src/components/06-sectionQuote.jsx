@@ -176,7 +176,7 @@ function Quote() {
         rotation: 0,
         duration: 0.6,
         ease: "power4.out",
-      }, 1 + i * 0.12); // same start time as this question
+      }, 1 + i * 0.12);
 
       tl.fromTo((iconRefs.current[i]), {
         scale: 0,
@@ -184,7 +184,7 @@ function Quote() {
         scale: 1,
         duration: 1,
         ease: "power4.out",
-      }, 1 + i * 0.10); // same start time as this question
+      }, 1 + i * 0.10);
 
     });
     GSDevTools.create({
