@@ -13,8 +13,12 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 function Hero() {
 
   return (
-    <div className='section-hero'>
-      <img src="../image/s" alt="" />
+    <div className='section-hero' data-logo='white'>
+      <img src="../../images/BG_Hero.png" alt="" />
+      <div className='text-container'>
+        <h1><span>Feel</span> the quality</h1>
+        <p>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </p>
+      </div>
     </div>
   )
 }

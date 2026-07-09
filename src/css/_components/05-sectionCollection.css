@@ -217,6 +217,7 @@
   }
   .swiper-btn-prev,
   .swiper-btn-next {
+    cursor: pointer;
     display: flex;
     position: relative;
     justify-content: center;
@@ -233,6 +234,18 @@
     }
     &:active {
       scale: 0.85;
+    }
+  }
+
+  .swiper-button-disabled {
+    background-color: #f5f4f4;
+    color: #9c9c9c;
+    cursor: default;
+    &:hover {
+      background-color: #f5f4f4;
+    }
+    &:active {
+      scale: 1;
     }
   }
 }

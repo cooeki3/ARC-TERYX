@@ -142,9 +142,9 @@ function Quote() {
       yPercent: 100
     }, {
       yPercent: 0,
-      duration: 1.5,
+      duration: 1.3,
       ease: 'power4.out',
-      stagger: 0.06,
+      stagger: 0.08,
     });
 
     questionRefs.current.forEach((question, i) => {
@@ -157,7 +157,7 @@ function Quote() {
         yPercent: 100
       }, {
         yPercent: 0,
-        duration: 1.5,
+        duration: 1.2,
         ease: 'power4.out',
         stagger: 0.1,
       }, 0.4 + i * 0.10);
@@ -218,15 +218,15 @@ function Quote() {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.h4-quote',
-          start: "top 90%",
-          end: 'top 30%',
+          start: "top 70%",
+          end: 'top 25%',
           scrub: 1,
         }
       })
   }, [])
 
   return (
-    <div className='section-quote'>
+    <div className='section-quote' data-logo='white'>
       <div className="quote-text-container" ref={textContainerRef}>
         <h4 className='h4-quote'>About us</h4>
         <h1 className='h1-quote' ref={quoteRef}>Crafted for those who seek the extraordinary. Designed with uncompromising materials for every adventure.</h1>

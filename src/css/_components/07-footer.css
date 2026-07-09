@@ -1,21 +1,22 @@
 .section-footer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  animation: gradient-diagonal 8s ease alternate infinite;
-  margin: 80px 60px;
-  border-radius: 20px;
-  background-color: var(--beige);
-
-  /* background: linear-gradient(45deg, #b1af99 40%, #dad8cd 50%,  #b1af99 60%);
-  background-size: 200% 200%; */
-  padding: 30px;
-  width: auto;
-  min-height: calc(100vh - 160px);
-  overflow: hidden;
-  color: white;
+  /* for the logo color anim. */
+  padding-top: 100px;
+  .footer-inner {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    animation: gradient-diagonal 8s ease alternate infinite;
+    margin: 80px 60px;
+    border-radius: 20px;
+    background-color: var(  --beige);
+    padding: 30px;
+    width: auto;
+    min-height: calc(100vh - 160px);
+    overflow: hidden;
+    color: white;
+  }
 
   .footer-row-1 {
     display: flex;

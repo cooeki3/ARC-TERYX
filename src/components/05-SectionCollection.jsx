@@ -18,6 +18,7 @@ function SectionCollection() {
   useEffect(() => {
     //Initialize the swiper
     const swiper = new Swiper('.swiper', {
+      loop: false,
       slidesPerView: 'auto',
       spaceBetween: 20,
       speed: 500,
@@ -123,7 +124,7 @@ function SectionCollection() {
   }, [])
 
   return (
-    <div className='section-collection'>
+    <div className='section-collection' data-logo='black'>
       <div className='section-collection-text'>
         <h1 className='section-collection-h1'>Spring summer ‘26 collection</h1>
         {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}

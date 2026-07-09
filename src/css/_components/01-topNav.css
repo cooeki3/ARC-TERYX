@@ -1,8 +1,10 @@
 .section-lang__nav {
-  display: flex;
+  display: grid;
   position: fixed;
   top: 0;
-  justify-content: end;
+  grid-template-columns: 1fr auto 1fr;
+  justify-content: space-between;
+  align-items: center;
   z-index: 1000;
   margin-top: 20px;
   padding: 0 60px;
@@ -10,11 +12,19 @@
   height: fit-content;
   user-select: none;
 
+  .text-logo {
+    justify-self: center;
+    width: 150px;
+    height: auto;
+  }
+
   .nav__lang-dropdown {
     display: flex;
     position: relative;
+    grid-column: 3;
     justify-content: space-between;
     align-items: center;
+    justify-self: end;
     gap: 0.5rem;
     z-index: 100;
     border-radius: 30px;
@@ -58,6 +68,9 @@
 
   .nav__lang-dropdown-below {
     position: absolute;
+    top: 0;
+    grid-column: 3;
+    justify-self: end;
     gap: 0.75rem;
     z-index: 99;
     backdrop-filter: blur(20px);

@@ -9,7 +9,7 @@ import "./css/style.css";
 import 'lenis/dist/lenis.css'
 
 // Navs
-import LangNav from './components/01-LangNav.jsx';
+import TopNav from './components/01-TopNav.jsx';
 import MenuNav from './components/02-MenuNav.jsx';
 // Hero
 import LandingPage from './components/03-LandingPage.jsx';
@@ -37,7 +37,7 @@ function App() {
         syncTouch: false,
       }}>
       <section className="page-wrapper">
-        <LangNav />
+        <TopNav />
         <MenuNav />
         <LandingPage />
         <Hero />

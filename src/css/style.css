@@ -4,7 +4,7 @@
 
 /* /////////////////////////////////////////////////////*/
 /*[ importation du dossier _components ]*/
-@import url("_components/01-langNav.css");
+@import url("_components/01-topNav.css");
 @import url("_components/02-menuNav.css");
 @import url("_components/03-landingPage.css");
 @import url("_components/04-hero.css");
