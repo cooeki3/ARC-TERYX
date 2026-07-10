@@ -214,7 +214,7 @@ function Quote() {
       {
         color: '#fff',
         stagger: 0.05,
-        duration: 0.02,
+        duration: 0.2,
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.h4-quote',

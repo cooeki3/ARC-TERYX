@@ -62,7 +62,7 @@
     bottom: 0;
     gap: 0.75rem;
     z-index: 99;
-    backdrop-filter: blur(20px);
+    /* backdrop-filter: blur(20px); */
     border-radius: 1.8rem;
     background-color: rgba(22, 22, 22, 0.527);
     width: 95px;

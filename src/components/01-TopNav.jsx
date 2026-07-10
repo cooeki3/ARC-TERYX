@@ -6,13 +6,16 @@ import { gsap } from 'gsap';
 import CustomEase from 'gsap/CustomEase';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
+import GSDevTools from "gsap/GSDevTools";
+import Logo from "../assets/ARCTERYX_text_logo.svg?react";
 
 // Register GSAP plugins
-gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 
-function TopNav() {
-    useEffect(() => {
+function TopNav({ langMenuRef, textLogoRef }) {
+    // ------------------------------Lang. Dropdown  anims.-----------------------------
+    useLayoutEffect(() => {
         //Lang. Dropdown hover animation
         const langDropdown = document.querySelector(".nav__lang-dropdown");
         const langDropdownBelow = document.querySelector(".nav__lang-dropdown-below");
@@ -32,39 +35,10 @@ function TopNav() {
             mask.style.marginRight = '-0.1em';
         });
 
-        // Logo color anim.
-        const sections = gsap.utils.toArray("[data-logo]");
-
-        sections.forEach((section, index) => {
-            ScrollTrigger.create({
-                trigger: section,
-                start: "top 3%",
-
-                onEnter: () => changeLogo(section.dataset.logo),
-
-                onLeaveBack: () => {
-                    const previous = sections[index - 1];
-
-                    if (previous) {
-                        changeLogo(previous.dataset.logo);
-                    }
-                }
-            });
-        });
-
-        function changeLogo(theme) {
-            gsap.to('.text-logo', {
-                filter: theme === 'black' ? 'brightness(0)' : 'brightness(0) invert(1)',
-                duration: 0.3,
-                ease: 'power4.out'
-            })
-        }
-
         //Set les cercle pour animation d'entrée et de sortie
         gsap.set('.dropdown__circle-01', {
             yPercent: -100
         })
-
 
         gsap.set('.dropdown__circle-02', {
             yPercent: 100
@@ -217,34 +191,43 @@ function TopNav() {
     }, []);
 
     return (
-        <nav className='section-lang__nav' id='nav'>
-            <div className="1stNavElement"></div>
-            <img src="../../images/ARCTERYX_text_logo_white.png" alt="Arc'teryx Logo" className='text-logo' />
-            <div className="nav__lang-dropdown-container">
-                <div className='nav__lang-dropdown '>
-                    <div className="dropdown__text">Français</div>
-                    <div className="dropdown__circles">
-                        <span className='dropdown__circle-01'></span>
-                        <span className='dropdown__circle-02'></span>
+        <>
+            <nav className='section-lang__nav' id='nav'>
+                <div className="1stNavElement"></div>
+                <Logo
+                    alt="Arc'teryx Logo"
+                    className='text-logo'
+                    ref={textLogoRef}
+                />
+                <div
+                    className="nav__lang-dropdown-container"
+                    ref={langMenuRef}
+                >
+                    <div className='nav__lang-dropdown '>
+                        <div className="dropdown__text">Français</div>
+                        <div className="dropdown__circles">
+                            <span className='dropdown__circle-01'></span>
+                            <span className='dropdown__circle-02'></span>
+                        </div>
+                    </div>
+                    <div className='nav__lang-dropdown-below'>
+                        <ul className="dropdown__lang-container">
+                            <li>English</li>
+                            <li>Español</li>
+                            <li>Deutsch</li>
+                            <li>Italiano</li>
+                            <li>Polski</li>
+                            <li>日本語</li>
+                            <li>中文(中国)</li>
+                            <li>Nederlands</li>
+                            <li>Português</li>
+                            <li>हिन्दी</li>
+                            <li>English(Hong Kong)</li>
+                        </ul>
                     </div>
                 </div>
-                <div className='nav__lang-dropdown-below'>
-                    <ul className="dropdown__lang-container">
-                        <li>English</li>
-                        <li>Español</li>
-                        <li>Deutsch</li>
-                        <li>Italiano</li>
-                        <li>Polski</li>
-                        <li>日本語</li>
-                        <li>中文(中国)</li>
-                        <li>Nederlands</li>
-                        <li>Português</li>
-                        <li>हिन्दी</li>
-                        <li>English(Hong Kong)</li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+            </nav>
+        </>
     )
 }
 export default TopNav;

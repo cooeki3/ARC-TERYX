@@ -5,7 +5,7 @@
   position: relative;
   z-index: 0;
   overflow: hidden;
-  img {
+  .hero-bg {
     position: absolute;
     width: 100%;
     height: 100%;
@@ -27,11 +27,11 @@
     transform: translateY(-10%);
     h1 {
       font-size: 6rem;
-      span{
+      span {
         font-style: italic;
       }
     }
-    p{
+    p {
       font-size: 1.25rem;
       font-weight: 300;
       width: 40%;

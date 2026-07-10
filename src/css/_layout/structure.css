@@ -12,15 +12,19 @@ html {
   overflow: auto;
   font-size: 16px;
 }
-/* Remove scrollbar */
+
+.gs-dev-tools {
+  z-index: 9999 !important;
+}
+
 html,
 body {
   overflow: auto;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge old */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
 
 html::-webkit-scrollbar,
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }

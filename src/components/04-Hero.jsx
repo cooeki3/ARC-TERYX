@@ -10,14 +10,16 @@ import { SplitText } from 'gsap/SplitText';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
-function Hero() {
+function Hero({ heroTitleRef, heroPRef }) {
 
   return (
     <div className='section-hero' data-logo='white'>
-      <img src="../../images/BG_Hero.png" alt="" />
-      <div className='text-container'>
-        <h1><span>Feel</span> the quality</h1>
-        <p>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </p>
+      <img src="../../images/BG_Hero.png" className='hero-bg' alt="Home background" />
+      <div
+        className='text-container'
+      >
+        <h1 ref={heroTitleRef}><span>Feel</span> the quality</h1>
+        <p ref={heroPRef}>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </p>
       </div>
     </div>
   )
