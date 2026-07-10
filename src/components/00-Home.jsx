@@ -109,12 +109,12 @@ function Home() {
 
       // Hero BG anim. anim.
       tl.fromTo('.hero-bg', {
-        scale: 1.05,
+        scale: 1.1,
         yPercent: 20,
       }, {
         yPercent: 0,
         scale: 1,
-        duration: 1,
+        duration: 1.2,
         ease: 'power4.out'
       }, 1.6)
 
