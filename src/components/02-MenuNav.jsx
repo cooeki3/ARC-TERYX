@@ -215,8 +215,8 @@ function MenuNav() {
             <div className='nav__menu-dropdown-below'>
                 <ul className="dropdown__menu-container">
                     <li className='menu-button-contact' data-target=".section-footer">Contact</li>
-                    <li className='menu-button-projets' data-target="">Projects</li>
-                    <li className='menu-button-services' data-target="">Services</li>
+                    <li className='menu-button-projets' data-target=".section-faq">FAQ</li>
+                    <li className='menu-button-services' data-target=".section-quote">About us</li>
                     <li className='menu-button-collection' data-target=".section-collection">New collection</li>
                     <li className='menu-button-home' data-target=".section-hero">Home</li>
                 </ul>

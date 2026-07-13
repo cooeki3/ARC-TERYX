@@ -13,7 +13,7 @@ import Logo from "../assets/ARCTERYX_text_logo.svg?react";
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 
-function TopNav({ langMenuRef, textLogoRef }) {
+function TopNav({ langMenuRef, textLogoRef, backdropRef }) {
     // ------------------------------Lang. Dropdown  anims.-----------------------------
     useLayoutEffect(() => {
         //Lang. Dropdown hover animation

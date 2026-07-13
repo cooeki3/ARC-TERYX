@@ -5,6 +5,7 @@
 
 body {
   background-color: var(--bg);
+  /* background-color:#c5c5c5; */
   font-weight: var(--font-regular);
 }
 

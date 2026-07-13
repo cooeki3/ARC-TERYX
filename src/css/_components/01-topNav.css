@@ -18,6 +18,11 @@
     height: auto;
   }
 
+  .nav__lang-dropdown-container {
+    width: fit-content;
+    justify-self: flex-end;
+  }
+
   .nav__lang-dropdown {
     display: flex;
     position: relative;
@@ -73,7 +78,7 @@
     justify-self: end;
     gap: 0.75rem;
     z-index: 99;
-    /* backdrop-filter: blur(20px); */
+    backdrop-filter: blur(20px);
     border-radius: 1.8rem;
     background-color: rgba(22, 22, 22, 0.527);
     width: 110px;

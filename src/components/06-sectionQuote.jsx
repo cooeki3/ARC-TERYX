@@ -223,48 +223,80 @@ function Quote() {
           scrub: 1,
         }
       })
+
+
+    // Outro grid anim.
+    gsap.fromTo('.outro-anim-grid-container > *', {
+      transform: 'scaleY(0)',
+    }, {
+      transform: 'scaleY(1)',
+      duration: 1,
+      ease: 'power1.out',
+      stagger: -0.1,
+      scrollTrigger: {
+        trigger: '.outro-anim-grid-container',
+        start: 'top top',
+        end: 'bottom 20%',
+        scrub: true,
+      }
+    })
   }, [])
 
   return (
-    <div className='section-quote' data-logo='white'>
-      <div className="quote-text-container" ref={textContainerRef}>
-        <h4 className='h4-quote'>About us</h4>
-        <h1 className='h1-quote' ref={quoteRef}>Crafted for those who seek the extraordinary. Designed with uncompromising materials for every adventure.</h1>
-      </div>
+    <>
+      <div className='section-quote' data-logo='white'>
+        <div className="quote-text-container" ref={textContainerRef}>
+          <h4 className='h4-quote'>About us</h4>
+          <h1 className='h1-quote' ref={quoteRef}>Crafted for those who seek the extraordinary. Designed with uncompromising materials for every adventure.</h1>
+        </div>
 
-      <div className='section-faq'>
-        {/* Left column */}
-        <div className='faq-intro'>
-          <h1 ref={faqH1Ref}>Frequently asked
-            questions</h1>
-          <p ref={faqPRef}>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
-        </div>
-        {/* Right column */}
-        <div className="faq-list">
-          {faqs.map((faq, index) => (
-            <div
-              className="faq-item"
-              key={index}
-            >
-              <button className="faq-summary" onClick={() => toggleFaq(index)}
-                aria-expanded={openIndex === index}>
-                <span ref={(el) => (questionRefs.current[index] = el)}>{faq.question}</span>
-                <span
-                  className="material-symbols-outlined faq-icon"
-                  ref={(el) => (iconRefs.current[index] = el)}
-                >
-                  add_2
-                </span>
-              </button>
-              <div className="faq-answer"
-                ref={(el) => (answerRefs.current[index] = el)}>
-                <p>{faq.answer}</p>
+        <div className='section-faq'>
+          {/* Left column */}
+          <div className='faq-intro'>
+            <h1 ref={faqH1Ref}>Frequently asked
+              questions</h1>
+            <p ref={faqPRef}>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. </p>
+          </div>
+          {/* Right column */}
+          <div className="faq-list">
+            {faqs.map((faq, index) => (
+              <div
+                className="faq-item"
+                key={index}
+              >
+                <button className="faq-summary" onClick={() => toggleFaq(index)}
+                  aria-expanded={openIndex === index}>
+                  <span ref={(el) => (questionRefs.current[index] = el)}>{faq.question}</span>
+                  <span
+                    className="material-symbols-outlined faq-icon"
+                    ref={(el) => (iconRefs.current[index] = el)}
+                  >
+                    add_2
+                  </span>
+                </button>
+                <div className="faq-answer"
+                  ref={(el) => (answerRefs.current[index] = el)}>
+                  <p>{faq.answer}</p>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
-      </div>
-    </div >
+
+        <div className='outro-anim-grid-container' data-logo='black'>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+          <div className='outro-anim-row'></div>
+        </div>
+      </div >
+    </>
   )
 }
 
