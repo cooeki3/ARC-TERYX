@@ -22,9 +22,10 @@ import MenuNav from './02-MenuNav.jsx';
 import Hero from './04-Hero.jsx';
 // Sections
 import SectionCollection from './05-SectionCollection.jsx';
-import SectionQuote from './06-sectionQuote.jsx';
+import SectionQuote from './06-SectionQuote.jsx';
+import SectionInfiniteSwiper from './07-SectionInifiteSwiper.jsx';
 // Footer
-import Footer from './07-Footer.jsx';
+import Footer from './08-Footer.jsx';
 
 function Home() {
   const heroTitleRef = useRef();
@@ -235,8 +236,11 @@ function Home() {
         heroTitleRef={heroTitleRef}
         heroPRef={heroPRef}
       />
+      {/*-------------------------------- Sections---------------------------------- */}
       <SectionCollection />
       <SectionQuote />
+      <SectionInfiniteSwiper />
+      {/*--------------------------------------------------------------------------- */}
       <Footer />
     </section>
   )

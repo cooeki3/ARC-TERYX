@@ -1,7 +1,7 @@
 // React imports
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-// Other imports
+// Swiper imports
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
@@ -17,7 +17,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 function SectionCollection() {
   useEffect(() => {
     //Initialize the swiper
-    const swiper = new Swiper('.swiper', {
+    const swiper = new Swiper('.section-collection-swiper', {
       loop: false,
       slidesPerView: 'auto',
       spaceBetween: 20,
@@ -62,7 +62,7 @@ function SectionCollection() {
 
     // Slide up anim
     tl.fromTo(
-      ".swiper-slide",
+      ".section-collection-swiper .swiper-slide",
       {
         yPercent: 30,
       },
