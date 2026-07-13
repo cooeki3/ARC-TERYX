@@ -34,7 +34,7 @@ function Home() {
   const textLogoRef = useRef();
   const landingBGRef = useRef();
 
-  const skipIntro = true;
+  const skipIntro = false;
 
   useLayoutEffect(() => {
     // GSAP context scopes animations to this component
