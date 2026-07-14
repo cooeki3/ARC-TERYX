@@ -139,7 +139,6 @@ function Quote() {
     });
 
 
-
     tl.fromTo(fullIntroLines, {
       yPercent: 100
     }, {
