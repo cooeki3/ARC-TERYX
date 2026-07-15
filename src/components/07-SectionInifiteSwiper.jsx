@@ -14,13 +14,18 @@ function SectionInifiniteSwiper() {
   const infiniteTrackRef = useRef();
 
   useLayoutEffect(() => {
+    const infiniteTrack = infiniteTrackRef.current;
+
     // Strict mode
     let cancelled = false;
 
+    let onDown;
+    let onUp;
     const ctx = gsap.context(() => {
+
+      // Wait for media so the looper knows their widths and does't break the visual
       const slides = gsap.utils.toArray(".slide");
       const media = slides.flatMap(slide => [...slide.querySelectorAll("img, video")]);
-
       const waitForMedia = Promise.all(
         media.map(el => {
           if (el.tagName === "IMG") {
@@ -32,7 +37,6 @@ function SectionInifiniteSwiper() {
         })
       );
 
-      // Wait for media so the looper knows their widths and does't break the visual
       waitForMedia.then(() => {
         if (cancelled) return;
 
@@ -40,25 +44,44 @@ function SectionInifiniteSwiper() {
         const loop = horizontalLoop(slides, {
           repeat: -1,
           speed: 1,
-          draggable: true,
           inertia: true
         });
 
-        const draggable = loop.draggable;
+        //Click & hold anim.
+        let isHolding = false;
+        let baseSpeed = 1;
+        let holdSpeed = 10;
 
-        // Drag anim.
-        if (draggable) {
-          const originalOnRelease = draggable.vars.onRelease;
+        // On hold of the infinite swiper : increase it's speed
+        onDown = () => {
+          if (isHolding) return;
 
-          draggable.vars.onPress = () => {
-            gsap.to(slides, { scale: 0.94, filter: "brightness(0.85)", duration: 0.3, ease: "power2.out" });
-          };
+          isHolding = true;
+          baseSpeed = loop.timeScale();
 
-          draggable.vars.onRelease = function () {
-            gsap.to(slides, { scale: 1, filter: "brightness(1)", duration: 0.4, ease: "power2.out" });
-            if (originalOnRelease) originalOnRelease.call(this);
-          };
+          gsap.to(loop, {
+            timeScale: Math.sign(loop.timeScale()) * holdSpeed,
+            duration: 0.3,
+            overwrite: true,
+          })
         }
+
+        // When stopping to hold of the infinite swiper : go back to original speed
+        onUp = () => {
+          isHolding = false;
+
+          gsap.to(loop, {
+            timeScale: Math.sign(loop.timeScale()),
+            duration: 1,
+            overwrite: true,
+          })
+        }
+
+        infiniteTrack.addEventListener('pointerdown', onDown)
+        infiniteTrack.addEventListener('pointerup', onUp)
+        // infiniteTrack.addEventListener("pointerleave", onUp);
+        // infiniteTrack.addEventListener("pointercancel", onUp);
+
 
         // Scroll anim.
         ScrollTrigger.create({
@@ -66,19 +89,34 @@ function SectionInifiniteSwiper() {
           start: "top bottom",
           end: "bottom top",
           onUpdate(self) {
+            if (isHolding) return;
+
             const scrollVelocity = self.getVelocity();
             const dir = scrollVelocity < 0 ? -1 : 1;
             const magnitude = gsap.utils.clamp(1, 10, 1 + Math.abs(scrollVelocity) / 200);
 
-            gsap.to(loop, { timeScale: dir * magnitude, duration: 0.1, ease: "power2.out", overwrite: true });
+            gsap.to(loop, {
+              timeScale: dir * magnitude,
+              duration: 0.1,
+              overwrite: true
+            });
           }
         });
+
+
       });
     });
 
     return () => {
       cancelled = true;
       ctx.revert();
+
+      if (onDown) {
+        infiniteTrack.removeEventListener("pointerdown", onDown);
+      }
+      if (onUp) {
+        infiniteTrack.removeEventListener("pointerup", onUp);
+      }
     };
   }, []);
 
