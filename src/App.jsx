@@ -2,7 +2,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 // Components imports
-import Home from './components/00-Home.jsx';
+import Home from './pages/Home';
 
 // Lenis imports
 import { ReactLenis, useLenis } from 'lenis/react'

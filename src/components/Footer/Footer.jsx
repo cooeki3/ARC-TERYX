@@ -13,13 +13,21 @@ import { SplitText } from 'gsap/SplitText';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
+// Other imports
+import {
+  imageFacebookIcon,
+  imageInstagramIcon,
+  imageXIcon,
+  imageARCTERYXLogo,
+} from "../../assets/images";
+
 function Footer() {
 
   return (
     <footer className='section-footer' data-logo='black'>
       <div className="footer-inner">
         <div className="footer-row-1">
-          <a href=""><img src="../../images/ARCTERYX_logo.png" alt="Arc'teryx logo" className="footer-logo" /></a>
+          <a href=""><img src={imageARCTERYXLogo} alt="Arc'teryx logo" className="footer-logo" /></a>
           <div className='footer-links'>
             <div className="footer-col link-hover-anim">
               <h4>Shop</h4>
@@ -87,9 +95,9 @@ function Footer() {
         <div className="footer-row-2 ">
           <div className="footer-row-2-1">
             <div className="footer-socials">
-              <a href=""><img src="../../images/Icon_Instagram.png" alt="Instagram icon" /></a>
-              <a href=""><img src="../../images/Icon_Facebook.png" alt="Facebook icon" /></a>
-              <a href=""><img src="../../images/Icon_X.png" alt="X icon" /></a>
+              <a href=""><img src={imageInstagramIcon} alt="Instagram icon" /></a>
+              <a href=""><img src={imageFacebookIcon} alt="Facebook icon" /></a>
+              <a href=""><img src={imageXIcon} alt="X icon" /></a>
             </div>
             <button className="footer-button">
               <span className='button-text'>Contact us</span>

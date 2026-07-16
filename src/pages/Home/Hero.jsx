@@ -1,6 +1,7 @@
 // React imports
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
+
 // GSAP imports
 import { gsap } from 'gsap';
 import CustomEase from 'gsap/CustomEase';
@@ -10,11 +11,16 @@ import { SplitText } from 'gsap/SplitText';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
+// Other imports:
+import {
+  imageHeroBackground,
+} from "../../assets/images";
+
 function Hero({ heroTitleRef, heroPRef }) {
 
   return (
     <div className='section-hero' data-logo='white'>
-      <img src="../../images/BG_Hero.png" className='hero-bg' alt="Home background" />
+      <img src={imageHeroBackground} className='hero-bg' alt="Home background" />
       <div
         className='text-container'
       >

@@ -285,16 +285,13 @@ function Quote() {
         </div>
 
         <div className='outro-anim-grid-container' data-logo='black'>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
-          <div className='outro-anim-row'></div>
+
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div
+              className="outro-anim-row"
+              key={index}
+            ></div>
+          ))}
         </div>
       </div >
     </>

@@ -10,6 +10,7 @@
     align-items: center;
     width: max-content;
     cursor: pointer;
+    filter: brightness(1);
   }
   .slide {
     flex-shrink: 0;

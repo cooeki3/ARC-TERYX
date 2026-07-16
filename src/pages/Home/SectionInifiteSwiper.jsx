@@ -6,9 +6,22 @@ import { gsap } from 'gsap';
 import { InertiaPlugin } from "gsap/InertiaPlugin";
 import { Draggable } from "gsap/Draggable";
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import horizontalLoop from "../utils/horizontalLoop";
+import horizontalLoop from "../../utils/horizontalLoop";
 
 gsap.registerPlugin(ScrollTrigger, Draggable, InertiaPlugin);
+
+// Other imports
+import {
+  imageARCTERYXProduct03,
+  imageARCTERYXProduct04,
+  imageARCTERYXProduct05,
+} from "../../assets/images";
+
+import {
+  videoARCTERYX01,
+  videoARCTERYX02,
+  videoARCTERYX03,
+} from "../../assets/videos";
 
 function SectionInifiniteSwiper() {
   const infiniteTrackRef = useRef();
@@ -50,7 +63,7 @@ function SectionInifiniteSwiper() {
         //Click & hold anim.
         let isHolding = false;
         let baseSpeed = 1;
-        let holdSpeed = 10;
+        let holdSpeed = 13;
 
         // On hold of the infinite swiper : increase it's speed
         onDown = () => {
@@ -64,6 +77,12 @@ function SectionInifiniteSwiper() {
             duration: 0.3,
             overwrite: true,
           })
+          gsap.to(infiniteTrackRef.current, {
+            duration: 0.3,
+            scale: 0.95,
+            filter: 'brightness(0.9)',
+            overwrite: true,
+          })
         }
 
         // When stopping to hold of the infinite swiper : go back to original speed
@@ -73,6 +92,13 @@ function SectionInifiniteSwiper() {
           gsap.to(loop, {
             timeScale: Math.sign(loop.timeScale()),
             duration: 1,
+            overwrite: true,
+          })
+
+          gsap.to(infiniteTrackRef.current, {
+            duration: 0.3,
+            scale: 1,
+            filter: 'brightness(1)',
             overwrite: true,
           })
         }
@@ -124,22 +150,25 @@ function SectionInifiniteSwiper() {
     <div className="section-infinite-swiper" data-logo="black">
       <div className="infinite-track" ref={infiniteTrackRef}>
         <div className="slide">
-          <video src="../videos/ARCTERYX_placeholder_01.mp4" autoPlay loop muted />
+          <video src={videoARCTERYX01} autoPlay loop muted playsInline disablePictureInPicture
+            controls={false} />
         </div>
         <div className="slide">
-          <img src="../images/ARTCTERYX_swiper_product_05.png" alt="" />
+          <img src={imageARCTERYXProduct05} alt="" />
         </div>
         <div className="slide">
-          <video src="../videos/ARCTERYX_placeholder_02.mp4" autoPlay loop muted />
+          <video src={videoARCTERYX02} autoPlay loop muted playsInline disablePictureInPicture
+            controls={false} />
         </div>
         <div className="slide">
-          <img src="../images/ARTCTERYX_swiper_product_04.png" alt="" />
+          <img src={imageARCTERYXProduct04} alt="" />
         </div>
         <div className="slide">
-          <video src="../videos/ARCTERYX_placeholder_03.mp4" autoPlay loop muted />
+          <video src={videoARCTERYX03} autoPlay loop muted disablePictureInPicture
+            controls={false} playsInline />
         </div>
         <div className="slide">
-          <img src="../images/ARTCTERYX_swiper_product_03.png" alt="" />
+          <img src={imageARCTERYXProduct03} alt="" />
         </div>
       </div>
     </div>
