@@ -11,6 +11,7 @@
   width: fit-content;
   height: fit-content;
   user-select: none;
+  opacity: 0;
 
   .nav__menu-dropdown {
     display: flex;

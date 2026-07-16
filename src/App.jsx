@@ -3,6 +3,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 // Components imports
 import Home from './pages/Home';
+import ScrollToTop from './components/ScrollToTop.jsx';
 
 // Lenis imports
 import { ReactLenis, useLenis } from 'lenis/react'
@@ -11,9 +12,6 @@ import 'lenis/dist/lenis.css'
 function App() {
   // ------------------------------------Lenis ini.-------------------------------
   const lenis = useLenis((lenis) => { })
-  useEffect(() => {
-    lenis?.scrollTo(0, { immediate: true, force: true });
-  }, [lenis]);
   return (
     <>
       <ReactLenis
@@ -23,8 +21,9 @@ function App() {
           wheelMultiplier: 1,
           syncTouch: false,
         }}>
-        <Home
-        />
+
+        <ScrollToTop />
+        <Home />
       </ReactLenis>
     </>
   )

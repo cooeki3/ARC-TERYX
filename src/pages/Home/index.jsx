@@ -9,6 +9,11 @@ import { SplitText } from 'gsap/SplitText';
 import GSDevTools from "gsap/GSDevTools";
 import Logo from '../../assets/images/ARCTERYX_text_logo.svg?react';
 
+// Lenis imports
+import { ReactLenis, useLenis } from 'lenis/react'
+import 'lenis/dist/lenis.css'
+
+
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 // CSS imports
@@ -35,8 +40,10 @@ function Home() {
     const landingBGRef = useRef();
 
     const skipIntro = false;
+    const lenis = useLenis();
 
     useLayoutEffect(() => {
+        if (!lenis) return;
         // GSAP context scopes animations to this component
         const ctx = gsap.context(() => {
             // ---------------------------Logo color anim (by section)-----------------------
@@ -93,12 +100,19 @@ function Home() {
                 const tl = gsap.timeline();
                 // Text logo anim.
                 gsap.set(textLogoRef.current, {
+                    display: 'block',
                     y: window.innerHeight,
+                    opacity: 1,
                 })
 
                 gsap.set(textLogoRef.current.querySelectorAll('path, polygon'), {
                     fill: '#b1af99'
                 });
+
+                // Disables scroll
+                tl.call(() => lenis?.stop(),
+                    [], 0
+                )
 
                 tl.to(textLogoRef.current, {
                     y: window.innerHeight / 2 - 50,
@@ -130,14 +144,20 @@ function Home() {
                 }, 1.2
                 )
 
+                // Enables scroll
+                tl.call(() => lenis?.start(),
+                    [], 2
+                )
+
+
                 // Hero BG anim. anim.
                 tl.fromTo('.hero-bg', {
-                    scale: 1.1,
-                    yPercent: 20,
+                    scale: 1.12,
+                    yPercent: 30,
                 }, {
                     yPercent: 0,
                     scale: 1,
-                    duration: 1.2,
+                    duration: 1.3,
                     ease: 'power4.out'
                 }, 1.4)
 
@@ -154,8 +174,8 @@ function Home() {
                     {
                         yPercent: 0,
                         opacity: 1,
-                        duration: 1.6,
-                        ease: 'power4.out',
+                        duration: 0.9,
+                        ease: 'power2.out',
                     }, 2
                 );
 
@@ -175,8 +195,8 @@ function Home() {
                     yPercent: 100,
                 }, {
                     yPercent: 0,
-                    duration: 1,
-                    ease: 'power4.out',
+                    duration: 0.9,
+                    ease: "expo.out",
                     stagger: 0.2
                 }, 2.1
                 )
@@ -185,8 +205,8 @@ function Home() {
                     yPercent: 100,
                 }, {
                     yPercent: 0,
-                    duration: 1,
-                    ease: 'power4.out',
+                    duration: 0.9,
+                    ease: "expo.out",
                     stagger: 0.2
                 }, 2.2)
 
@@ -199,21 +219,12 @@ function Home() {
                     {
                         yPercent: 0,
                         opacity: 1,
-                        duration: 1.6,
-                        ease: 'power4.out',
+                        duration: 0.9,
+                        ease: 'power2.out',
 
                     }, 2.3
                 )
             }
-            // tl.fromTo('.nav__menu-dropdown-below',
-            //   {
-            //     backdropFilter: 'blur(0px)',
-            //   },
-            //   {
-            //     backdropFilter: 'blur(20px)',
-            //     duration: 1.6,
-            //     ease: 'power4.out',
-            //   }, 3)
 
             // GSDevTools.create({
             //   animation: tl,
@@ -222,7 +233,7 @@ function Home() {
 
         // Revert all GSAP changes when component is removed
         return () => ctx.revert();
-    }, [])
+    }, [lenis])
 
     return (
         <section className="page-wrapper">

@@ -16,11 +16,13 @@
     justify-self: center;
     width: 150px;
     height: auto;
+    opacity: 0;
   }
 
   .nav__lang-dropdown-container {
     width: fit-content;
     justify-self: flex-end;
+    opacity: 0;
   }
 
   .nav__lang-dropdown {
