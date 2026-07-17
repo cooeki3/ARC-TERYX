@@ -23,6 +23,7 @@ import "../../styles/style.css";
 // Navs
 import TopNav from '../../components/Header/TopNav.jsx';
 import MenuNav from '../../components/Header/MenuNav.jsx';
+import BottomNav from '../../components/Header/BottomNav.jsx';
 // Hero
 import Hero from './Hero.jsx';
 // Sections
@@ -83,6 +84,12 @@ function Home() {
             if (skipIntro) {
                 gsap.set('.landing-bg', {
                     display: 'none'
+                })
+                gsap.set('.nav__lang-dropdown-container', {
+                    opacity: 1
+                })
+                gsap.set('.section-menu__nav', {
+                    opacity: 1
                 })
 
                 initLogoScrollTriggers();
@@ -168,60 +175,46 @@ function Home() {
                 // Nav lang. anim.
                 tl.fromTo('.nav__lang-dropdown-container',
                     {
-                        yPercent: 100,
+                        yPercent: 105,
                         opacity: 0,
                     },
                     {
                         yPercent: 0,
                         opacity: 1,
-                        duration: 0.9,
-                        ease: 'power2.out',
+                        duration: 1.2,
+                        ease: 'power4.out',
                     }, 2
                 );
 
-                // tl.fromTo('.nav__lang-dropdown-below ',
-                //   {
-                //     backdropFilter: 'blur(0px)',
-                //   },
-                //   {
-                //     backdropFilter: 'blur(20px)',
-                //     duration: 1.6,
-                //     ease: 'power4.out',
-                //   }, 2
-                // );
-
                 // Hero title and p anim.
                 tl.fromTo(heroTitleSplit.lines, {
-                    yPercent: 100,
+                    yPercent: 105,
                 }, {
                     yPercent: 0,
-                    duration: 0.9,
-                    ease: "expo.out",
-                    stagger: 0.2
+                    duration: 1.2,
+                    ease: 'power4.out',
                 }, 2.1
                 )
 
                 tl.fromTo(heroPSplit.lines, {
-                    yPercent: 100,
+                    yPercent: 105,
                 }, {
                     yPercent: 0,
-                    duration: 0.9,
-                    ease: "expo.out",
-                    stagger: 0.2
+                    duration: 1.2,
+                    stagger: 0.08
                 }, 2.2)
 
                 // Nav menu anim.
                 tl.fromTo('.section-menu__nav',
                     {
-                        yPercent: 100,
+                        yPercent: 105,
                         opacity: 0,
                     },
                     {
                         yPercent: 0,
                         opacity: 1,
-                        duration: 0.9,
-                        ease: 'power2.out',
-
+                        duration: 1.2,
+                        ease: 'power4.out',
                     }, 2.3
                 )
             }
@@ -243,6 +236,7 @@ function Home() {
                 textLogoRef={textLogoRef}
             />
             <MenuNav />
+            <BottomNav />
             <Hero
                 heroTitleRef={heroTitleRef}
                 heroPRef={heroPRef}

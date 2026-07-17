@@ -7,10 +7,12 @@
 @import url("_components/home.css");
 @import url("_components/topNav.css");
 @import url("_components/menuNav.css");
+@import url("_components/bottomNav.css");
 @import url("_components/hero.css");
 @import url("_components/sectionCollection.css");
 @import url("_components/sectionQuote.css");
 @import url("_components/sectionInifiteSwiper.css");
+@import url("_components/currentTime.css");
 @import url("_components/footer.css");
 
 /* /////////////////////////////////////////////////////*/

@@ -26,10 +26,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    padding-bottom: 10vh;
+    padding-bottom: 20vh;
     align-items: center;
     font-family: var(--font-heading);
-    transform: translateY(-10%);
+
     h1 {
       font-size: 6rem;
       line-height: 0.9;

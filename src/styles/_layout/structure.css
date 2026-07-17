@@ -29,3 +29,10 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;
 }
+
+/* To fix jittery text lines anim. ending */
+.lines {
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateZ(0);
+}

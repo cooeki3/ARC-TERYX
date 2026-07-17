@@ -1,6 +1,7 @@
 :root {
   /* Colors */
   --white: #fff;
+  --trans-white: #ffffffa6;
   --black: #000;
   --light-gray: #686868;
   --gray: #808080;
@@ -15,6 +16,7 @@
   --font-italic: "Apple Garamond Italic", serif;
 
   /* Font-sizes */
+  --text-xxs: 0.7875rem;
   --text-sm: 0.875rem;
   --text-base: 1rem;
   --text-lg: 1.25rem;
