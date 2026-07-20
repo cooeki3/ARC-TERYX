@@ -14,6 +14,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 export default function BottomNav() {
     const bottomNavRef = useRef();
+
     // Appear/Disappear anim.
     useLayoutEffect(() => {
         let tl = gsap.timeline({ paused: true });

@@ -14,6 +14,8 @@ import { SplitText } from 'gsap/SplitText';
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 // Other imports
+import DotGrid from '../DotGrid';
+
 import {
   imageFacebookIcon,
   imageInstagramIcon,
@@ -26,6 +28,7 @@ function Footer() {
   return (
     <footer className='section-footer' data-logo='black'>
       <div className="footer-inner">
+      <DotGrid />
         <div className="footer-row-1">
           <a href=""><img src={imageARCTERYXLogo} alt="Arc'teryx logo" className="footer-logo" /></a>
           <div className='footer-links'>

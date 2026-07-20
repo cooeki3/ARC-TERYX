@@ -10,7 +10,7 @@
     animation: gradient-diagonal 8s ease alternate infinite;
     margin: 80px 60px;
     border-radius: 20px;
-    background-color: var(  --beige);
+    background-color: var(--beige);
     padding: 30px;
     width: auto;
     min-height: calc(100vh - 160px);

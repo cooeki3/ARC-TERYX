@@ -8,6 +8,8 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import GSDevTools from 'gsap/GSDevTools';
 
+// Other imports
+import DotGrid from '../../components/DotGrid';
 
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
@@ -116,16 +118,43 @@ function Quote() {
     const quoteSplit = new SplitText(quoteRef.current, {
       type: 'words, chars, lines',
       mask: 'lines',
+      // autoSplit: true,
+      // onSplit(self) {
+      //   gsap.from(self.lines, {
+      //     yPercent: 100,
+      //     duration: 1.2,
+      //     stagger: 0.08,
+      //     ease: 'power4.out',
+      //   });
+      // }
     });
 
     const faqHeadingSplit = new SplitText(faqH1Ref.current, {
       type: 'lines',
       mask: 'lines',
+      // autoSplit: true,
+      // onSplit(self) {
+      //   gsap.from(self.lines, {
+      //     yPercent: 100,
+      //     duration: 1.2,
+      //     stagger: 0.08,
+      //     ease: 'power4.out',
+      //   });
+      // }
     });
 
     const faqParagraphSplit = new SplitText(faqPRef.current, {
       type: 'lines',
       mask: 'lines',
+      // autoSplit: true,
+      // onSplit(self) {
+      //   gsap.from(self.lines, {
+      //     yPercent: 100,
+      //     duration: 1.2,
+      //     stagger: 0.08,
+      //     ease: 'power4.out',
+      //   });
+      // }
     });
 
     const fullIntroLines = [...faqHeadingSplit.lines, ...faqParagraphSplit.lines];
@@ -152,6 +181,15 @@ function Quote() {
       const questionSplit = new SplitText(question, {
         type: 'lines',
         mask: 'lines',
+        // autoSplit: true,
+        // onSplit(self) {
+        //   gsap.from(self.lines, {
+        //     yPercent: 100,
+        //     duration: 1.2,
+        //     stagger: 0.08,
+        //     ease: 'power4.out',
+        //   });
+        // }
       });
 
       tl.fromTo(questionSplit.lines, {
@@ -246,6 +284,7 @@ function Quote() {
   return (
     <>
       <div className='section-quote' data-logo='white'>
+        <DotGrid />
         <div className="quote-text-container" ref={textContainerRef}>
           <h4 className='h4-quote'>About us</h4>
           <h1 className='h1-quote' ref={quoteRef}>Crafted for those who seek the extraordinary. Designed with uncompromising materials for every adventure.</h1>

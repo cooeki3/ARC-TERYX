@@ -3,8 +3,10 @@
   width: 100%;
   height: 50vh;
   user-select: none;
+  overflow: hidden; /* <-- this */
 
   .infinite-track {
+    height: 100%;
     will-change: transform;
     display: flex;
     align-items: center;
@@ -13,15 +15,14 @@
     filter: brightness(1);
   }
   .slide {
-    flex-shrink: 0;
-    width: fit-content;
-    height: 50vh;
+    height: 100%;
+    width: auto;
     padding-right: 20px;
   }
 
   video,
   img {
-    height: 500px;
+    height: 100%;
     object-fit: cover;
     border-radius: 25px;
     pointer-events: none;

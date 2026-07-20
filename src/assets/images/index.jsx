@@ -13,7 +13,7 @@ import imageARCTERYXProduct03 from "./ARCTERYX_swiper_product_03.png";
 import imageARCTERYXProduct04 from "./ARCTERYX_swiper_product_04.png";
 import imageARCTERYXProduct05 from "./ARCTERYX_swiper_product_05.png";
 
-import imageHeroBackground from "./BG_Hero.png";
+import imageHeroBackground from "./BG_Hero_v2.png";
 
 import imageFacebookIcon from "./Icon_Facebook.png";
 import imageInstagramIcon from "./Icon_Instagram.png";

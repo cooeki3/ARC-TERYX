@@ -27,7 +27,9 @@ import {
 } from "../../assets/images";
 
 function SectionCollection() {
-  useEffect(() => {
+  const sectionCollectionRef = useRef();
+
+  useLayoutEffect(() => {
     //Initialize the swiper
     const swiper = new Swiper('.section-collection-swiper', {
       loop: false,
@@ -45,16 +47,66 @@ function SectionCollection() {
         draggable: true,
       },
     });
+    // --------------------------------Scroll scale anim.------------------
 
+    gsap.fromTo(sectionCollectionRef.current, {
+      scale: 0.8,
+      yPercent: '30',
+    }, {
+      yPercent: '-40',
+      scale: 1,
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: '.section-hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
 
+        onComplete: () => {
+          ScrollTrigger.refresh();
+        },
+      }
+    })
+    gsap.fromTo('.section-hero', {
+      filter: 'brightness(1)',
+    }, {
+      filter: 'brightness(0.5)',
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: '.section-hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      }
+    })
+
+    ScrollTrigger.create({
+      trigger: ".section-hero",
+      start: "bottom top",
+
+      onEnter: () => {
+        gsap.set("body", {
+          backgroundColor: "#fff"
+        });
+      },
+
+      onLeaveBack: () => {
+        gsap.set("body", {
+          backgroundColor: "#000"
+        });
+      }
+    });
+
+    // --------------------------------Intro anim.-------------------------
     // Tl for anim
     const tl = gsap.timeline({
       scrollTrigger: {
-        trigger: ".section-collection-text",
-        start: "top bottom",
+        trigger: ".section-hero",
+        start: "bottom bottom",
         toggleActions: "restart none none reset"
-      }
+      },
     })
+
 
     // H1 anim
     tl.fromTo(
@@ -131,12 +183,12 @@ function SectionCollection() {
         ease: "power4.out",
       }, 0
     )
-
+    // ScrollTrigger.refresh();
     return () => swiper.destroy(true, true);
   }, [])
 
   return (
-    <div className='section-collection' data-logo='black'>
+    <div className='section-collection' ref={sectionCollectionRef} data-logo='black'>
       <div className='section-collection-text'>
         <h1 className='section-collection-h1'>Spring summer ‘26 collection</h1>
         {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}

@@ -40,7 +40,7 @@ function Home() {
     const textLogoRef = useRef();
     const landingBGRef = useRef();
 
-    const skipIntro = false;
+    const skipIntro = true;
     const lenis = useLenis();
 
     useLayoutEffect(() => {
@@ -98,10 +98,28 @@ function Home() {
                 const heroTitleSplit = new SplitText(heroTitleRef.current, {
                     type: 'lines',
                     mask: 'lines',
+                    // autoSplit: true,
+                    // onSplit(self) {
+                    //     gsap.from(self.lines, {
+                    //         yPercent: 100,
+                    //         duration: 1.2,
+                    //         stagger: 0.08,
+                    //         ease: 'power4.out',
+                    //     });
+                    // }
                 });
                 const heroPSplit = new SplitText(heroPRef.current, {
                     type: 'lines',
                     mask: 'lines',
+                    // autoSplit: true,
+                    // onSplit(self) {
+                    //     gsap.from(self.lines, {
+                    //         yPercent: 100,
+                    //         duration: 1.2,
+                    //         stagger: 0.08,
+                    //         ease: 'power4.out',
+                    //     });
+                    // }
                 });
 
                 const tl = gsap.timeline();
@@ -131,7 +149,7 @@ function Home() {
                     y: 0,
                     duration: 1.2,
                     ease: "power4.inOut"
-                }, 1.2
+                }, '>'
                 );
 
                 tl.to(textLogoRef.current.querySelectorAll('path, polygon'), {
@@ -183,26 +201,27 @@ function Home() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 2
+                    }, 2.2
                 );
-
+                console.log(heroTitleSplit.lines)
                 // Hero title and p anim.
                 tl.fromTo(heroTitleSplit.lines, {
                     yPercent: 105,
                 }, {
                     yPercent: 0,
-                    duration: 1.2,
+                    duration: 0.8,
                     ease: 'power4.out',
-                }, 2.1
+                }, 2.3
                 )
 
                 tl.fromTo(heroPSplit.lines, {
                     yPercent: 105,
                 }, {
                     yPercent: 0,
-                    duration: 1.2,
+                    duration: 0.8,
                     stagger: 0.08
-                }, 2.2)
+                }, 2.4
+                )
 
                 // Nav menu anim.
                 tl.fromTo('.section-menu__nav',
@@ -215,7 +234,17 @@ function Home() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 2.3
+                    }, 2.8
+                )
+                tl.fromTo('.section-bottom-nav',
+                    {
+                        opacity: 0,
+                    },
+                    {
+                        opacity: 1,
+                        duration: 1.2,
+                        ease: 'power4.out',
+                    }, 3.1
                 )
             }
 
