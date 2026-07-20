@@ -40,7 +40,7 @@ function Home() {
     const textLogoRef = useRef();
     const landingBGRef = useRef();
 
-    const skipIntro = true;
+    const skipIntro = false;
     const lenis = useLenis();
 
     useLayoutEffect(() => {
