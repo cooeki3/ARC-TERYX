@@ -50,11 +50,13 @@ function SectionCollection() {
     // --------------------------------Scroll scale anim.------------------
 
     gsap.fromTo(sectionCollectionRef.current, {
-      scale: 0.8,
       yPercent: '30',
+      scale: 0.8,
+      borderRadius: '100px'
     }, {
       yPercent: '-40',
       scale: 1,
+      borderRadius: '0px',
       ease: 'power4.out',
       scrollTrigger: {
         trigger: '.section-hero',

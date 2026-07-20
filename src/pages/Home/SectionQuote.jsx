@@ -257,8 +257,8 @@ function Quote() {
         ease: 'power3.out',
         scrollTrigger: {
           trigger: '.h4-quote',
-          start: "top 70%",
-          end: 'top 25%',
+          start: "top 65%",
+          end: 'top 10%',
           scrub: 1,
         }
       })

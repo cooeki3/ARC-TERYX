@@ -40,16 +40,16 @@
     gap: 3px;
     h4 {
       cursor: pointer;
-      color: #fff;
-      font-weight: var(--font-medium);
-      font-size: 1.5rem;
+      color: hsla(0, 0%, 100%, 0.8);
+      font-weight: var(--font-regular);
+      font-size: 0.9rem;
       font-family: var(--font-body);
     }
 
     a {
       color: #fff;
       font-weight: var(--font-regular);
-      font-size: 1rem;
+      font-size: 1.1rem;
       font-family: var(--font-body);
     }
   }
