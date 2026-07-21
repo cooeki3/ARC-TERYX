@@ -21,8 +21,8 @@ export default function BottomNav() {
         tl.to(bottomNavRef.current, {
             yPercent: 50,
             opacity: 0,
-            duration: 1.6,
-            ease: 'power4.inOut',
+            duration: 1.7,
+            ease: 'power3.inOut',
         })
 
         ScrollTrigger.create({

@@ -81,6 +81,18 @@ function SectionCollection() {
         scrub: true,
       }
     })
+    gsap.fromTo('.landing-logo-container', {
+      filter: 'brightness(1) blur(0px)',
+    }, {
+      filter: 'brightness(0.5) blur(3px)',
+      ease: 'power4.out',
+      scrollTrigger: {
+        trigger: '.section-hero',
+        start: 'top top',
+        end: 'bottom top',
+        scrub: true,
+      }
+    })
 
     ScrollTrigger.create({
       trigger: ".section-hero",
