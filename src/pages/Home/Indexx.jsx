@@ -231,6 +231,7 @@ export default function Index() {
                 }, 2.5
                 )
 
+
                 // Nav menu anim.
                 tl.fromTo('.section-menu__nav',
                     {
