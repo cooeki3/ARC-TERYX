@@ -172,7 +172,7 @@ export default function Index() {
 
                 tl.to('.landing-logo-container', {
                     width: '100%',
-                    duration: 2.1,
+                    duration: 1.8,
                     ease: "power4.out"
                 }, 2
                 );
@@ -183,15 +183,15 @@ export default function Index() {
                 )
 
                 // Hero BG anim. anim.
-                tl.fromTo('.hero-bg', {
-                    scale: 1.12,
-                    yPercent: 30,
+                tl.fromTo('.hero-bg video', {
+                    yPercent: 60,
+                    scale: 1.2,
                 }, {
                     yPercent: 0,
                     scale: 1,
-                    duration: 1.3,
+                    duration: 1.1,
                     ease: 'power4.out'
-                }, 1.4)
+                }, 1.8)
 
                 // Init Logo color anim on scroll (based on sections)
                 tl.call(initLogoScrollTriggers,

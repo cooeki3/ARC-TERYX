@@ -33,6 +33,7 @@ function Hero({ heroTitleRef, heroPRef }) {
           onLoadedMetadata={(e) => {
             e.currentTarget.currentTime = 2;
           }}
+          className='landing-video'
         >
           <source src={videoHero} type="video/mp4" />
         </video>
