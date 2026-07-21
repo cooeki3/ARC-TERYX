@@ -13,7 +13,7 @@ import Logo from "../../assets/images/ARCTERYX_text_logo.svg?react";
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 
-function TopNav({ langMenuRef, textLogoRef, backdropRef }) {
+function TopNav({ langMenuRef, miniLogoRef, backdropRef }) {
     // ------------------------------Lang. Dropdown  anims.-----------------------------
     useLayoutEffect(() => {
         //Lang. Dropdown hover animation
@@ -197,7 +197,7 @@ function TopNav({ langMenuRef, textLogoRef, backdropRef }) {
                 <Logo
                     alt="Arc'teryx Logo"
                     className='text-logo'
-                    ref={textLogoRef}
+                    ref={miniLogoRef}
                 />
                 <div
                     className="nav__lang-dropdown-container"

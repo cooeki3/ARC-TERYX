@@ -116,8 +116,9 @@ function Quote() {
   // Entrance animations
   useEffect(() => {
     const quoteSplit = new SplitText(quoteRef.current, {
-      type: 'words, chars, lines',
+      type: 'rlines',
       mask: 'lines',
+      linesClass: "text-indent"
       // autoSplit: true,
       // onSplit(self) {
       //   gsap.from(self.lines, {

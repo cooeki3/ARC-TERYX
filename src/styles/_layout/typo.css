@@ -1,3 +1,13 @@
+/* -------------------------- Geist ------------------------------ */
+
+@font-face {
+  font-family: "Vercetti";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("../../assets/fonts/Vercetti/Vercetti[wght].woff2") format("woff2");
+}
+
+/* --------------------------Creato Display------------------------------ */
 /* Regular */
 @font-face {
   font-style: normal;
@@ -109,7 +119,7 @@
     format("opentype");
   font-family: "Creato Display";
 }
-
+/* --------------------------Apple Garamond------------------------------ */
 /* Regular */
 @font-face {
   font-style: normal;

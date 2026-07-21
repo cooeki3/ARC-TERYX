@@ -2,12 +2,15 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 
 // Components imports
-import Home from './pages/Home';
+import Index from './pages/Home/Index.jsx';
 import ScrollToTop from './components/ScrollToTop.jsx';
 
 // Lenis imports
 import { ReactLenis, useLenis } from 'lenis/react'
 import 'lenis/dist/lenis.css'
+
+// Fonts
+import "@fontsource-variable/geist";
 
 function App() {
   // ------------------------------------Lenis ini.-------------------------------
@@ -22,8 +25,8 @@ function App() {
           syncTouch: false,
         }}>
 
-        <ScrollToTop />
-        <Home />
+        {/* <ScrollToTop /> */}
+        <Index />
       </ReactLenis>
     </>
   )

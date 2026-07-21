@@ -70,9 +70,9 @@ function SectionCollection() {
       }
     })
     gsap.fromTo('.section-hero', {
-      filter: 'brightness(1)',
+      filter: 'brightness(1) blur(0px)',
     }, {
-      filter: 'brightness(0.5)',
+      filter: 'brightness(0.5) blur(3px)',
       ease: 'power4.out',
       scrollTrigger: {
         trigger: '.section-hero',

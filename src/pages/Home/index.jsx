@@ -8,13 +8,14 @@ import ScrollTrigger from 'gsap/ScrollTrigger';
 import { SplitText } from 'gsap/SplitText';
 import GSDevTools from "gsap/GSDevTools";
 import Logo from '../../assets/images/ARCTERYX_text_logo.svg?react';
+import { SlowMo } from "gsap/EasePack";
 
 // Lenis imports
 import { ReactLenis, useLenis } from 'lenis/react'
 import 'lenis/dist/lenis.css'
 
 
-gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools, SlowMo);
 
 // CSS imports
 import "../../styles/style.css";
@@ -33,11 +34,13 @@ import SectionInfiniteSwiper from './SectionInifiteSwiper.jsx';
 // Footer
 import Footer from '../../components/Footer/Footer.jsx';
 
-function Home() {
+export default function Index() {
     const heroTitleRef = useRef();
     const heroPRef = useRef();
     const langMenuRef = useRef();
-    const textLogoRef = useRef();
+
+    const miniLogoRef = useRef();
+    const largeLogoRef = useRef();
     const landingBGRef = useRef();
 
     const skipIntro = false;
@@ -69,7 +72,7 @@ function Home() {
                 });
 
                 function changeLogo(theme) {
-                    gsap.to(textLogoRef.current.querySelectorAll('path, polygon'), {
+                    gsap.to(miniLogoRef.current.querySelectorAll('path, polygon'), {
                         fill: theme === 'black' ?
                             '#000'
                             : '#fff',
@@ -124,56 +127,60 @@ function Home() {
 
                 const tl = gsap.timeline();
                 // Text logo anim.
-                gsap.set(textLogoRef.current, {
+                gsap.set(largeLogoRef.current, {
                     display: 'block',
                     y: window.innerHeight,
                     opacity: 1,
                 })
 
-                gsap.set(textLogoRef.current.querySelectorAll('path, polygon'), {
-                    fill: '#b1af99'
-                });
+                // gsap.set(largeLogoRef.current.querySelectorAll('path, polygon'), {
+                //     fill: '#b1af99'
+                // });
 
                 // Disables scroll
                 tl.call(() => lenis?.stop(),
                     [], 0
                 )
 
-                tl.to(textLogoRef.current, {
-                    y: window.innerHeight / 2 - 50,
-                    duration: 1.2,
-                    ease: "power2.out"
+                gsap.set(largeLogoRef.current, {
+                    yPercent: -50,
+                });
+
+                tl.to(largeLogoRef.current, {
+                    y: window.innerHeight / 2 - 60,
+                    duration: 1.6,
+                    ease: "power3.out",
                 }, 0)
-
-                tl.to(textLogoRef.current, {
-                    y: 0,
-                    duration: 1.2,
-                    ease: "power4.inOut"
-                }, '>'
-                );
-
-                tl.to(textLogoRef.current.querySelectorAll('path, polygon'), {
-                    fill: '#ffffff',
-                    duration: 1.2,
-                    ease: "power4.inOut"
-                }, 1.2
-                );
 
                 // Landing BG anim.
                 tl.fromTo('.landing-bg', {
                     y: 0,
                 }, {
                     yPercent: -100,
-                    duration: 1.2,
+                    duration: 2.3,
                     ease: "power4.inOut"
                 }, 1.2
                 )
+
+                tl.to(largeLogoRef.current, {
+                    y: 0,
+                    yPercent: 0,
+                    duration: 1.5,
+                    ease: "power2.inOut"
+                }, 1.5
+                )
+
+                tl.to('.landing-logo-container', {
+                    width: '100%',
+                    duration: 2.1,
+                    ease: "power4.out"
+                }, 2.4
+                );
 
                 // Enables scroll
                 tl.call(() => lenis?.start(),
                     [], 2
                 )
-
 
                 // Hero BG anim. anim.
                 tl.fromTo('.hero-bg', {
@@ -201,7 +208,7 @@ function Home() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 2.2
+                    }, 2.8
                 );
                 console.log(heroTitleSplit.lines)
                 // Hero title and p anim.
@@ -211,7 +218,7 @@ function Home() {
                     yPercent: 0,
                     duration: 0.8,
                     ease: 'power4.out',
-                }, 2.3
+                }, 3.1
                 )
 
                 tl.fromTo(heroPSplit.lines, {
@@ -220,7 +227,7 @@ function Home() {
                     yPercent: 0,
                     duration: 0.8,
                     stagger: 0.08
-                }, 2.4
+                }, 3.2
                 )
 
                 // Nav menu anim.
@@ -234,7 +241,7 @@ function Home() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 2.8
+                    }, 3.8
                 )
                 tl.fromTo('.section-bottom-nav',
                     {
@@ -244,13 +251,13 @@ function Home() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 3.1
+                    }, 3.8
                 )
             }
-
             // GSDevTools.create({
-            //   animation: tl,
+            //     animation: tl,
             // });
+
         })
 
         // Revert all GSAP changes when component is removed
@@ -262,8 +269,11 @@ function Home() {
             <div className="landing-bg" ref={landingBGRef}></div>
             <TopNav
                 langMenuRef={langMenuRef}
-                textLogoRef={textLogoRef}
+                miniLogoRef={miniLogoRef}
             />
+            <div className='landing-logo-container'>
+                <Logo ref={largeLogoRef} />
+            </div>
             <MenuNav />
             <BottomNav />
             <Hero
@@ -279,5 +289,3 @@ function Home() {
         </section>
     )
 }
-
-export default Home

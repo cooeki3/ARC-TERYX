@@ -2,6 +2,7 @@
   position: relative;
   animation: gradient-shift 3s ease alternate infinite;
   background: linear-gradient(40deg, #b1af99 0%, rgb(117, 116, 105) 50%);
+  /* background-color: #fff; */
   background-size: 200% 200%;
   padding: 250px 0;
   width: 100%;
@@ -23,6 +24,7 @@
       color: var(--white);
       font-weight: 500;
       font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+      width: 85%;
     }
     h1 {
       width: 85%;
@@ -31,8 +33,11 @@
       font-weight: 400;
       font-size: clamp(1rem, 8vw, 4.5rem);
       font-family: var(--font-heading);
-      text-align: center;
+      text-align: left;
     }
+    /* .text-indent:first-child{
+      padding-left: 100px;
+    } */
   }
 
   .outro-anim-grid-container {

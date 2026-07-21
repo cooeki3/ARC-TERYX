@@ -10,10 +10,18 @@
   --light-white-gray: #eaeaea;
   --beige: #918f7d;
 
-  /* Fonts */
-  --font-heading: "Creato Display", sans-serif;
-  --font-body: "Creato Display", sans-serif;
-  --font-italic: "Apple Garamond Italic", serif;
+  /* Font Families */
+
+  --font-creato: "Creato Display", sans-serif;
+  --font-apple: "Apple Garamond", serif;
+  --font-vercetti: "Vercetti", sans-serif;
+
+  /* Fonts used*/
+  --font-heading: var( --font-vercetti);
+  --font-body: var( --font-vercetti);
+  --font-serif: var(--font-apple);
+  --font-mono: var(--font-geist-mono);
+  --font-accent: var(--font-geist);
 
   /* Font-sizes */
   --text-xxs: 0.7875rem;

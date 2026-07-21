@@ -1,9 +1,36 @@
 .landing-bg {
   position: absolute;
-  background-color: #ffffff;
+  background-color: #fff;
   top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
-  z-index: 99;
+  z-index: 10;
+
+  clip-path: polygon(
+    0% 0%,
+    100% 0%,
+    100% 100%,
+    0% 100%,
+    0% 0%,
+    100% 49%,
+    0% 49%,
+    0% 51%,
+    0% 51%,
+    0% 49%
+  );
+}
+
+.landing-logo-container {
+  position: absolute;
+  padding: 60px;
+  width: 15vw;
+  left: 50%;
+  transform: translateX(-50%);
+  height: auto;
+  z-index: 101;
+  mix-blend-mode: difference;
+  svg {
+    fill: #ffffff;
+  }
 }

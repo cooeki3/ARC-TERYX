@@ -34,7 +34,7 @@
     transform: translateZ(0);
     backface-visibility: hidden;
     cursor: pointer;
-    margin-top: 16px;
+    /* margin-top: 0px; */
     border: solid 1px #000000;
     border-radius: 999px;
     padding: 8px 16px;

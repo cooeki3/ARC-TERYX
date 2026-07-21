@@ -15,12 +15,28 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 import {
   imageHeroBackground,
 } from "../../assets/images";
+import {
+  videoHero,
+} from "../../assets/videos";
 
 function Hero({ heroTitleRef, heroPRef }) {
 
   return (
     <div className='section-hero' data-logo='white'>
-      <img src={imageHeroBackground} className='hero-bg' alt="Home background" />
+      {/* <img src={imageHeroBackground} className='hero-bg' alt="Home background" /> */}
+      <div className="hero-bg">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          onLoadedMetadata={(e) => {
+            e.currentTarget.currentTime = 2;
+          }}
+        >
+          <source src={videoHero} type="video/mp4" />
+        </video>
+      </div>
       <div
         className='text-container'
       >
