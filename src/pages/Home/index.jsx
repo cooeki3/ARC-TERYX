@@ -157,7 +157,7 @@ export default function Index() {
                     y: 0,
                 }, {
                     yPercent: -100,
-                    duration: 2.3,
+                    duration: 1.6,
                     ease: "power4.inOut"
                 }, 1.2
                 )
@@ -167,14 +167,14 @@ export default function Index() {
                     yPercent: 0,
                     duration: 1.5,
                     ease: "power2.inOut"
-                }, 1.5
+                }, 1.2
                 )
 
                 tl.to('.landing-logo-container', {
                     width: '100%',
                     duration: 2.1,
                     ease: "power4.out"
-                }, 2.4
+                }, 2
                 );
 
                 // Enables scroll
@@ -208,9 +208,9 @@ export default function Index() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 2.8
+                    }, 2.3
                 );
-                console.log(heroTitleSplit.lines)
+
                 // Hero title and p anim.
                 tl.fromTo(heroTitleSplit.lines, {
                     yPercent: 105,
@@ -218,7 +218,7 @@ export default function Index() {
                     yPercent: 0,
                     duration: 0.8,
                     ease: 'power4.out',
-                }, 3.1
+                }, 2.4
                 )
 
                 tl.fromTo(heroPSplit.lines, {
@@ -226,8 +226,9 @@ export default function Index() {
                 }, {
                     yPercent: 0,
                     duration: 0.8,
-                    stagger: 0.08
-                }, 3.2
+                    stagger: 0.08,
+                    ease: 'power4.out',
+                }, 2.5
                 )
 
                 // Nav menu anim.
@@ -241,17 +242,19 @@ export default function Index() {
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 3.8
+                    }, 2.9
                 )
                 tl.fromTo('.section-bottom-nav',
                     {
+                        yPercent: 105,
                         opacity: 0,
                     },
                     {
+                        yPercent: 0,
                         opacity: 1,
                         duration: 1.2,
                         ease: 'power4.out',
-                    }, 3.8
+                    }, 2.9
                 )
             }
             // GSDevTools.create({
