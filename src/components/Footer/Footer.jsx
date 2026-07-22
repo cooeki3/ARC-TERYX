@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 
 // Other imports
 import DotGrid from '../DotGrid';
+import Logo from "../../assets/images/ARCTERYX_logo.svg?react";
 
 import {
   imageFacebookIcon,
@@ -28,9 +29,9 @@ function Footer() {
   return (
     <footer className='section-footer' data-logo='black'>
       <div className="footer-inner">
-      <DotGrid />
+        <DotGrid />
         <div className="footer-row-1">
-          <a href=""><img src={imageARCTERYXLogo} alt="Arc'teryx logo" className="footer-logo" /></a>
+          <a href=""> <Logo className='footer-logo' /></a>
           <div className='footer-links'>
             <div className="footer-col link-hover-anim">
               <h4>Shop</h4>

@@ -11,15 +11,22 @@ import GSDevTools from 'gsap/GSDevTools';
 // Other imports
 import DotGrid from '../../components/DotGrid';
 
+import {
+  imageMaterial01,
+  imageMaterial02,
+  imageMaterial03,
+} from "../../assets/images";
+
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
-function Quote() {
+export default function Quote() {
   const quoteRef = useRef();
   const textContainerRef = useRef();
   const faqH1Ref = useRef();
   const faqPRef = useRef();
   const questionRefs = useRef([]);
+  const inlineImageRef = useRef();
 
   const answerRefs = useRef([]);
   const iconRefs = useRef([]);
@@ -116,46 +123,18 @@ function Quote() {
   // Entrance animations
   useEffect(() => {
     const quoteSplit = new SplitText(quoteRef.current, {
-      type: 'rlines',
-      mask: 'lines',
-      linesClass: "text-indent"
-      // autoSplit: true,
-      // onSplit(self) {
-      //   gsap.from(self.lines, {
-      //     yPercent: 100,
-      //     duration: 1.2,
-      //     stagger: 0.08,
-      //     ease: 'power4.out',
-      //   });
-      // }
+      type: 'words, chars',
+      mask: 'words, chars',
     });
 
     const faqHeadingSplit = new SplitText(faqH1Ref.current, {
       type: 'lines',
       mask: 'lines',
-      // autoSplit: true,
-      // onSplit(self) {
-      //   gsap.from(self.lines, {
-      //     yPercent: 100,
-      //     duration: 1.2,
-      //     stagger: 0.08,
-      //     ease: 'power4.out',
-      //   });
-      // }
     });
 
     const faqParagraphSplit = new SplitText(faqPRef.current, {
       type: 'lines',
       mask: 'lines',
-      // autoSplit: true,
-      // onSplit(self) {
-      //   gsap.from(self.lines, {
-      //     yPercent: 100,
-      //     duration: 1.2,
-      //     stagger: 0.08,
-      //     ease: 'power4.out',
-      //   });
-      // }
     });
 
     const fullIntroLines = [...faqHeadingSplit.lines, ...faqParagraphSplit.lines];
@@ -182,15 +161,6 @@ function Quote() {
       const questionSplit = new SplitText(question, {
         type: 'lines',
         mask: 'lines',
-        // autoSplit: true,
-        // onSplit(self) {
-        //   gsap.from(self.lines, {
-        //     yPercent: 100,
-        //     duration: 1.2,
-        //     stagger: 0.08,
-        //     ease: 'power4.out',
-        //   });
-        // }
       });
 
       tl.fromTo(questionSplit.lines, {
@@ -199,7 +169,7 @@ function Quote() {
         yPercent: 0,
         duration: 1.2,
         ease: 'power4.out',
-        stagger: 0.1,
+        stagger: 0.08,
       }, 0.4 + i * 0.10);
 
       tl.fromTo(question.closest('.faq-item'), {
@@ -232,27 +202,70 @@ function Quote() {
     // });
 
     // Y and mask anim.
-    gsap.fromTo(quoteSplit.lines, {
-      yPercent: 100
-    }, {
-      yPercent: 0,
-      duration: 1.5,
-      ease: 'power4.out',
-      stagger: 0.03,
+
+    let tlQuote = gsap.timeline({
       scrollTrigger: {
         trigger: '.h4-quote',
         start: 'top 80%',
         // for tests:
         toggleActions: "restart none none reset"
       }
-    })
+    });
+
+    tlQuote.fromTo(quoteSplit.words, {
+      yPercent: 100
+    }, {
+      yPercent: 0,
+      duration: 1,
+      ease: 'power4.out',
+      stagger: 0.02,
+    }, 0
+    )
+
+    tlQuote.fromTo('.quote-inline-img',
+      {
+        transform: 'scale(0)',
+      },
+      {
+        transform: 'scale(1)',
+        marginLeft: "0.30em",
+        width: 'auto',
+        duration: 0.9,
+        // ease: "elastic.out(1.9,0.4)",
+        ease: "power4.out",
+
+        scrollTrigger: {
+          trigger: quoteRef.current,
+          start: 'top bottom',
+        }
+      }, 0.7
+    )
+    tlQuote.fromTo('.quote-inline-img img', {
+      transform: 'scale(0)',
+    }, {
+      transform: 'scale(1)',
+      duration: 1.6,
+      ease: "elastic.out(1,0.75)",
+      stagger: 0.08,
+    }, 0.7
+    )
+    // tlQuote.fromTo('.quote-inline-img img', {
+    //   opacity: 0,
+    // }, {
+    //   opacity: 1,
+    //   duration: 0.7,
+    //   ease: 'power4.out',
+    // }, ">-=0.7"
+    // )
+
+
     // H1 Opacity animation
     gsap.fromTo(quoteSplit.chars,
       {
-        color: '#B0B0A9'
+        color: 'var( --secondary-text-opacity)',
       },
       {
-        color: '#fff',
+        color: 'var( --secondary-text)',
         stagger: 0.05,
         duration: 0.2,
         ease: 'power3.out',
@@ -264,6 +277,24 @@ function Quote() {
         }
       })
 
+
+
+    console.log(document.contains(inlineImageRef.current)); // if false, that's your bug
+    // Intro grid anim.
+    gsap.fromTo('.intro-anim-grid-container > *', {
+      transform: 'scaleY(1)',
+    }, {
+      transform: 'scaleY(0)',
+      duration: 1,
+      ease: 'power1.out',
+      stagger: -0.1,
+      scrollTrigger: {
+        trigger: '.intro-anim-grid-container',
+        start: 'top bottom',
+        end: 'bottom 20%',
+        scrub: true,
+      }
+    })
 
     // Outro grid anim.
     gsap.fromTo('.outro-anim-grid-container > *', {
@@ -280,15 +311,51 @@ function Quote() {
         scrub: true,
       }
     })
-  }, [])
+
+    return () => {
+      tl.scrollTrigger?.kill();
+      tl.kill();
+      quoteSplit.revert();
+      faqHeadingSplit.revert();
+      faqParagraphSplit.revert();
+      // kill any other scrollTriggers created in this effect (inline image, intro/outro grid)
+      ScrollTrigger.getAll().forEach(st => st.kill());
+    }
+
+  },
+    [])
+
 
   return (
     <>
       <div className='section-quote' data-logo='white'>
+        <div className='intro-anim-grid-container' data-logo='black'>
+
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div
+              className="outro-anim-row"
+              key={index}
+            ></div>
+          ))}
+        </div>
+
         <DotGrid />
         <div className="quote-text-container" ref={textContainerRef}>
-          <h4 className='h4-quote'>About us</h4>
-          <h1 className='h1-quote' ref={quoteRef}>Crafted for those who seek the extraordinary. Designed with uncompromising materials for every adventure.</h1>
+          <div className="quote-flex-1">
+            <h4 className='h4-quote'>About us</h4>
+            <div className="animated-circle">
+              <span className='animated'></span>
+              <span></span>
+            </div>
+          </div>
+          <h1 className=' quote-flex-2 h1-quote' ref={quoteRef}>Built with
+            <span className='text-img-container'> materials
+              <span className='quote-inline-img' ref={inlineImageRef}>
+                <img src={imageMaterial01} alt="" />
+                <img src={imageMaterial02} alt="" />
+                <img src={imageMaterial03} alt="" />
+              </span>
+            </span> crafted<br />through precision and refined through every detail, creating equipment designed to endure the elements.</h1>
         </div>
 
         <div className='section-faq'>
@@ -337,5 +404,3 @@ function Quote() {
     </>
   )
 }
-
-export default Quote

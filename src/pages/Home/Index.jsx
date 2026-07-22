@@ -165,15 +165,15 @@ export default function Index() {
                 tl.to(largeLogoRef.current, {
                     y: 0,
                     yPercent: 0,
-                    duration: 1.5,
-                    ease: "power2.inOut"
-                }, 1.2
+                    duration: 1.1,
+                    ease: "power3.inOut"
+                }, 1.5
                 )
 
                 tl.to('.landing-logo-container', {
                     width: '100%',
-                    duration: 1.8,
-                    ease: "power4.out"
+                    duration: 1,
+                    ease: "power3.out"
                 }, 2
                 );
 

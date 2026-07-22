@@ -12,6 +12,7 @@ function DotGrid() {
         let animationFrame;
 
         const dots = [];
+        const ripples = [];
 
         const mouse = {
             x: null,
@@ -43,7 +44,11 @@ function DotGrid() {
                         y,
                         ox: x,
                         oy: y,
-                        opacity: 0.35,
+
+                        velocityX: 0,
+                        velocityY: 0,
+
+                        opacity: 0.15,
                         size: radius,
                         hover: 0,
                     });
@@ -56,7 +61,6 @@ function DotGrid() {
 
             const time = Date.now() * 0.001;
 
-            // Convert cursor position to canvas coordinates
             const rect = canvas.getBoundingClientRect();
 
             const localMouse = {
@@ -64,13 +68,15 @@ function DotGrid() {
                 y: mouse.y !== null ? mouse.y - rect.top : null,
             };
 
+
             dots.forEach(dot => {
                 let targetX = dot.ox;
                 let targetY = dot.oy;
 
                 let distance = Infinity;
 
-                // Wave movement
+
+                // Floating wave
                 const wave = Math.sin(
                     dot.ox * 0.005 +
                     dot.oy * 0.008 +
@@ -84,7 +90,9 @@ function DotGrid() {
                     time * 0.7
                 ) * 1.5;
 
-                // Cursor interaction
+
+
+                // Mouse interaction
                 if (localMouse.x !== null) {
                     const dx = localMouse.x - dot.x;
                     const dy = localMouse.y - dot.y;
@@ -103,32 +111,100 @@ function DotGrid() {
                     }
                 }
 
-                // Dots movement
-                dot.x += (targetX - dot.x) * 0.03;
-                dot.y += (targetY - dot.y) * 0.03;
+
+
+                // Liquid ripple
+                const now = performance.now();
+
+                ripples.forEach(ripple => {
+                    const age = (now - ripple.start) / 1000;
+
+                    const rippleRadius = age * 600;
+                    const waveWidth = 80;
+
+                    const dx = dot.ox - ripple.x;
+                    const dy = dot.oy - ripple.y;
+
+                    const dist = Math.sqrt(
+                        dx * dx +
+                        dy * dy
+                    );
+
+
+                    const difference = dist - rippleRadius;
+
+                    const strength = Math.exp(
+                        -(difference * difference) /
+                        (2 * waveWidth * waveWidth)
+                    );
+
+
+                    if (dist > 0.001) {
+                        const nx = dx / dist;
+                        const ny = dy / dist;
+
+                        targetX += nx * strength * 12;
+                        targetY += ny * strength * 12;
+
+                        targetY -= strength * 8;
+
+                        // dot.opacity += strength * 0.15;
+                    }
+                });
+
+
+
+                // Physics movement
+                dot.velocityX +=
+                    (targetX - dot.x) * 0.002;
+
+                dot.velocityY +=
+                    (targetY - dot.y) * 0.002;
+
+
+                dot.velocityX *= 0.92;
+                dot.velocityY *= 0.92;
+
+
+                dot.x += dot.velocityX;
+                dot.y += dot.velocityY;
+
+
 
                 // Hover animation
-                const hover = distance < influence ? 1 : 0;
+                const hover =
+                    distance < influence ? 1 : 0;
 
-                dot.hover += (hover - dot.hover) * 0.015;
+                dot.hover +=
+                    (hover - dot.hover) * 0.015;
 
-                // Wave opacity
-                const waveBrightness = (wave + 1) / 2;
+
+
+                // Opacity
+                const waveBrightness =
+                    (wave + 1) / 2;
 
                 const targetOpacity =
-                    0.15 +
-                    waveBrightness * 0.25 +
-                    dot.hover * 0.55;
+                    0.05 +
+                    waveBrightness * 0.12 +
+                    dot.hover * 0.25;
+
 
                 dot.opacity +=
-                    (targetOpacity - dot.opacity) * 0.015;
+                    (targetOpacity - dot.opacity) * 0.05;
 
+
+
+                // Size
                 const targetSize =
                     radius + dot.hover * 1;
 
                 dot.size +=
                     (targetSize - dot.size) * 0.015;
 
+
+
+                // Draw
                 ctx.beginPath();
 
                 ctx.arc(
@@ -140,31 +216,64 @@ function DotGrid() {
                 );
 
                 ctx.fillStyle =
-                    `rgba(220,220,215,${dot.opacity})`;
+                    `rgba(49, 49, 51, ${dot.opacity})`;
 
                 ctx.fill();
             });
 
+
+
+            // Remove old ripples
+            for (let i = ripples.length - 1; i >= 0; i--) {
+                if (
+                    performance.now() -
+                    ripples[i].start >
+                    1800
+                ) {
+                    ripples.splice(i, 1);
+                }
+            }
+
+
             animationFrame = requestAnimationFrame(draw);
         }
 
+
+
         function move(e) {
-            // Keep mouse in viewport coordinates
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         }
+
 
         function leave() {
             mouse.x = null;
             mouse.y = null;
         }
 
+
+        function click(e) {
+            const rect =
+                canvas.getBoundingClientRect();
+
+            ripples.push({
+                x: e.clientX - rect.left,
+                y: e.clientY - rect.top,
+                start: performance.now(),
+            });
+        }
+
+
+
         resize();
         draw();
+
 
         window.addEventListener("resize", resize);
         window.addEventListener("mousemove", move);
         window.addEventListener("mouseleave", leave);
+        window.addEventListener("click", click);
+
 
         return () => {
             cancelAnimationFrame(animationFrame);
@@ -172,8 +281,11 @@ function DotGrid() {
             window.removeEventListener("resize", resize);
             window.removeEventListener("mousemove", move);
             window.removeEventListener("mouseleave", leave);
+            window.removeEventListener("click", click);
         };
+
     }, []);
+
 
     return (
         <canvas

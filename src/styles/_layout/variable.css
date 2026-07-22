@@ -9,6 +9,9 @@
   --color-whitesmoke: #efefef;
   --light-white-gray: #eaeaea;
   --beige: #918f7d;
+  --secondary-bg: #ebebec;
+  --secondary-text: #313133;
+  --secondary-text-opacity: #737379;
 
   /* Font Families */
 
@@ -17,8 +20,8 @@
   --font-vercetti: "Vercetti", sans-serif;
 
   /* Fonts used*/
-  --font-heading: var( --font-vercetti);
-  --font-body: var( --font-vercetti);
+  --font-heading: var(--font-vercetti);
+  --font-body: var(--font-vercetti);
   --font-serif: var(--font-apple);
   --font-mono: var(--font-geist-mono);
   --font-accent: var(--font-geist);
@@ -48,6 +51,10 @@
   --transition: 0.3s ease;
 
   --margin: 80px;
+
+  /* gsap anims */
+  /* --image-width: clamp(80px, 15vw, 250px); */
+  --image-width: 200px;
 }
 
 /* .gs-dev-tools {

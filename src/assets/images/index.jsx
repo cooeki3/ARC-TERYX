@@ -15,6 +15,10 @@ import imageARCTERYXProduct05 from "./ARCTERYX_swiper_product_05.png";
 
 import imageHeroBackground from "./BG_Hero_v2.png";
 
+import imageMaterial01 from "./ARCTERYX_material_01.jpg";
+import imageMaterial02 from "./ARCTERYX_material_02.jpg";
+import imageMaterial03 from "./ARCTERYX_material_03.jpg";
+
 import imageFacebookIcon from "./Icon_Facebook.png";
 import imageInstagramIcon from "./Icon_Instagram.png";
 import imageXIcon from "./Icon_X.png";
@@ -35,6 +39,10 @@ export {
     imageARCTERYXProduct05,
 
     imageHeroBackground,
+
+    imageMaterial01,
+    imageMaterial02,
+    imageMaterial03,
 
     imageFacebookIcon,
     imageInstagramIcon,
