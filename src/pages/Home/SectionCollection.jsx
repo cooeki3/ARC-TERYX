@@ -267,7 +267,7 @@ function SectionCollection({ sectionCollectionRef }) {
   return (
     <div className='section-collection' ref={sectionCollectionRef} data-logo='black'>
       <div className='section-collection-text'>
-        <h1 className='section-collection-h1'>Spring summer ‘26 collection</h1>
+        <h1 className='section-collection-h1'>Winter ‘26 collection</h1>
         {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}
         <button className='section-collection-button'>Learn more</button>
       </div>
