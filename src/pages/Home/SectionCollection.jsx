@@ -26,8 +26,7 @@ import {
   imageARCTERYXProduct05
 } from "../../assets/images";
 
-function SectionCollection() {
-  const sectionCollectionRef = useRef();
+function SectionCollection({ sectionCollectionRef }) {
 
   useLayoutEffect(() => {
     //Initialize the swiper
@@ -63,10 +62,6 @@ function SectionCollection() {
         start: 'top top',
         end: 'bottom top',
         scrub: true,
-
-        onComplete: () => {
-          ScrollTrigger.refresh();
-        },
       }
     })
     gsap.fromTo('.section-hero', {
@@ -197,6 +192,74 @@ function SectionCollection() {
         ease: "power4.out",
       }, 0
     )
+
+    // Cards hover anim.
+    const cards = document.querySelectorAll('.section-collection-card');
+
+    cards.forEach((card) => {
+      const cardImg = card.querySelector('.section-collection-card-bg');
+      const cardImgHoverScale = card.querySelector('.scale-wrapper');
+      const cardImgHoverOpacity = card.querySelector('.opacity-wrapper');
+
+      gsap.set(cardImgHoverOpacity, {
+        opacity: 0
+      });
+      gsap.set(cardImgHoverScale, {
+        scale: 0.4
+      });
+
+      const hoverIn = () => {
+        gsap.to(cardImg, {
+          scale: 1.2,
+          filter: 'brightness(0.8) blur(2px)',
+          duration: 1,
+          ease: 'power4.out',
+          overwrite: true
+        })
+
+        gsap.to(cardImgHoverOpacity, {
+          opacity: 1,
+          duration: 0.4,
+          ease: 'power4.out',
+          overwrite: true
+        })
+
+        gsap.to(cardImgHoverScale, {
+          scale: 0.7,
+          duration: 1.1,
+          ease: 'power4.out',
+          overwrite: true
+        })
+      }
+
+      const hoverOut = () => {
+        gsap.to(cardImg, {
+          scale: 1,
+          filter: 'brightness(1) blur(0px)',
+          duration: 0.8,
+          ease: 'power4.out',
+          overwrite: true
+        })
+
+        gsap.to(cardImgHoverOpacity, {
+          opacity: 0,
+          duration: 0.4,
+          ease: 'power4.out',
+          overwrite: true
+        })
+
+        gsap.to(cardImgHoverScale, {
+          scale: 0.4,
+          duration: 0.6,
+          ease: 'power4.out',
+          overwrite: true
+        })
+      }
+
+      card.addEventListener('mouseenter', hoverIn);
+      card.addEventListener('mouseleave', hoverOut);
+    })
+
     // ScrollTrigger.refresh();
     return () => swiper.destroy(true, true);
   }, [])
@@ -215,30 +278,35 @@ function SectionCollection() {
           {/* Slides */}
           <CollectionCard
             src={imageARCTERYXProduct04}
+            hoverSrc={imageARCTERYXProduct04}
             tag='Accessories'
             name='Bird Head Toque'
             price='$70.00'
           />
           <CollectionCard
             src={imageARCTERYXProduct02}
+            hoverSrc={imageARCTERYXProduct02}
             tag='Accessories'
             name='Satoro Merino Headband'
             price='$50.00'
           />
           <CollectionCard
             src={imageARCTERYXProduct01}
+            hoverSrc={imageARCTERYXProduct01}
             tag='Footwear'
             name='Sylan 2 Shoe'
             price='$280.00'
           />
           <CollectionCard
             src={imageARCTERYXProduct05}
+            hoverSrc={imageARCTERYXProduct05}
             tag='Accessories'
             name='Sinsola Short Brim Bucket Hat'
             price='$110.00'
           />
           <CollectionCard
             src={imageARCTERYXProduct03}
+            hoverSrc={imageARCTERYXProduct03}
             tag='Accessories'
             name='Silex Cap'
             price='$0.00'

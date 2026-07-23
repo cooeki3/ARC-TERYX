@@ -16,7 +16,7 @@
       font-weight: 400;
       font-size: clamp(3rem, 8vw, 4.5rem);
       line-height: 100%;
-      font-family: var(--font-heading);
+      font-family: var(--font-pixel-square);
     }
     p {
       color: var(--secondary-text);

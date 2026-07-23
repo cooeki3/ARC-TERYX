@@ -17,31 +17,37 @@ export default function BottomNav() {
 
     // Appear/Disappear anim.
     useLayoutEffect(() => {
-        let tl = gsap.timeline({ paused: true });
-        tl.to(bottomNavRef.current, {
-            yPercent: 50,
-            opacity: 0,
-            duration: 1.7,
-            ease: 'power3.inOut',
-        })
-
         ScrollTrigger.create({
-            trigger: '.section-hero',
-            start: '8% top',
+            trigger: ".section-hero",
+            start: "8% top",
 
             onEnter: () => {
-                tl.timeScale(10).play();
+                gsap.to(bottomNavRef.current, {
+                    yPercent: 50,
+                    scale: 0.95,
+                    opacity: 0,
+                    duration: 0.5,
+                });
             },
 
             onLeaveBack: () => {
-                tl.timeScale(1).reverse();
+                gsap.to(bottomNavRef.current, {
+                    yPercent: 0,
+                    scale: 1,
+                    opacity: 1,
+                    duration: 0.5,
+                });
             },
-        })
+        });
     }, [])
 
     return (
         <div className='section-bottom-nav' ref={bottomNavRef}>
-            <div className="col col-1">©2026 Arc'teryx - Digital Experience Concept</div>
+            <div className="col col-1">©2026 Arc'teryx - Digital Experience Concept
+                <a href="">
+                    &nbsp;[Learn more]
+                </a>
+            </div>
             <div className="col col-2">
                 <CurrentTime />
             </div>

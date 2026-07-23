@@ -8,8 +8,8 @@
   overflow: hidden;
 
   &::selection {
-    background-color: #b1af99;
-    color: #fff;
+    background-color: var(--secondary-text);
+    color: var(--secondary-bg);
   }
 
   /* Section intro text */
@@ -26,7 +26,9 @@
     font-weight: 400;
     font-size: 3rem;
     line-height: 1;
-    font-family: var(--font-heading);
+    /* font-family: var(--font-heading); */
+    font-family: var(--font-pixel-square);
+    color: var(--secondary-text);
   }
 
   .section-collection-button {
@@ -34,7 +36,7 @@
     backface-visibility: hidden;
     cursor: pointer;
     /* margin-top: 0px; */
-    border: solid 1px #000000;
+    border: solid 1px var(--secondary-text);
     border-radius: 999px;
     padding: 8px 16px;
     width: fit-content;
@@ -44,13 +46,13 @@
     white-space: nowrap;
     &:hover {
       transition: all 0.1s ease;
-      background-color: #000000;
+      background-color: var(--secondary-text);
       color: #fff;
     }
     &:active {
       transform: scale(0.95);
       transition: all 0.1s ease;
-      background-color: #000000;
+      background-color: var(--secondary-text);
       color: #fff;
     }
   }
@@ -70,17 +72,18 @@
     position: relative;
     flex-direction: row;
     z-index: 100;
-    transition: all 0.1s ease;
+    /* transition: all 0.6s ease-out; */
     cursor: pointer;
-    border-radius: 25px;
+    /* border-radius: 25px; */
     background-color: #e5ded9;
     aspect-ratio: 43 / 52;
     width: clamp(350px, 30vw, 430px);
     overflow: hidden;
     user-select: none;
-    &:hover .section-collection-card-bg {
-      scale: 1.07;
-    }
+    /* &:hover .section-collection-card-bg {
+      filter: brightness(0.7) blur(6px);
+      scale: 1.2;
+    } */
   }
 
   /* White gradient at the end of the swiper */
@@ -107,65 +110,91 @@
   .section-collection-card-bg {
     position: absolute;
     z-index: 0;
-    transition: all 0.3s;
+    /* transition: all 0.3s; */
     width: 100%;
     height: 100%;
     object-fit: cover;
     object-position: 50% 50%;
+    scale: 1.03;
+    filter: brightness(1) blur(0px);
+    background-color: var(--secondary-bg);
   }
 
-  .section-collection-card-description {
-    display: flex;
-    justify-content: space-between;
-    align-items: end;
-    z-index: 100;
-    padding: 25px;
+  /* Hover container */
+  .hover-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100%;
-    height: 100%;
+    z-index: 1;
+    img {
+      object-fit: cover;
+      object-position: 50% 50%;
+      /* scale: 0.8; */
+      background-color: var(--secondary-bg);
+    }
   }
 
-  .section-collection-card-text {
+  .scale-wrapper {
+    width: 100%;
+    height: fit-content;
     display: flex;
     flex-direction: column;
-    align-items: start;
-    gap: 4px;
-    z-index: 100;
-    font-weight: var(--font-medium);
-    font-family: var(--font-body);
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
   }
 
-  .section-collection-product-tag {
-    color: var(--light-gray);
-    font-size: 1rem;
-  }
-
-  .section-collection-product-name {
+  .product-name {
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-pixel-circle);
     display: -webkit-box;
     overflow: hidden;
-    font-variant: var(--font-medium);
-    font-size: 1.5rem;
+    font-size: 1.9rem;
     line-clamp: 1;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    font-weight: 600;
   }
 
-  .section-collection-product-price {
-    color: var(--light-gray);
-  }
-
-  .section-collection-product-add-button {
+  .bottom-flex-container {
+    text-transform: uppercase;
     display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    color: var(--secondary-text);
+    font-size: 1.25rem;
+    font-weight: 600;
+    .product-tag {
+    }
+
+    .product-price {
+    }
+  }
+
+  .product-add-button {
+    display: flex;
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 0.5em;
     justify-content: center;
     align-items: center;
     z-index: 100;
     cursor: pointer;
     border-radius: 100%;
-    background-color: black;
+    background-color: var(--secondary-text);
     width: 40px;
     height: 40px;
     color: #fff;
-    font-weight: 100;
-    font-size: 2rem;
+    font-weight: 400;
+    font-size: 1.6rem;
     font-family: var(--font-body);
     user-select: none;
 
@@ -199,6 +228,11 @@
     width: 30% !important;
     height: 6px !important;
     user-select: none;
+    border-radius: 0 !important;
+
+    .swiper-scrollbar-drag {
+      border-radius: 0 !important;
+    }
   }
 
   .swiper-scrollbar:active {
@@ -206,7 +240,7 @@
   }
   .swiper-scrollbar-drag {
     cursor: grab;
-    background-color: var(--light-gray);
+    background-color: var(--secondary-text);
     &:hover {
       opacity: 0.7;
     }
@@ -235,7 +269,7 @@
     transition: all 0.1s ease;
     cursor: pointer;
     border-radius: 100%;
-    background-color: var(--light-white-gray);
+    /* background-color: var(--light-white-gray); */
     width: 40px;
     height: 40px;
     user-select: none;
@@ -249,10 +283,10 @@
 
   .swiper-button-disabled {
     cursor: default;
-    background-color: #f5f4f4;
+    /* background-color: #f5f4f4; */
     color: #9c9c9c;
     &:hover {
-      background-color: #f5f4f4;
+      /* background-color: #f5f4f4; */
     }
     &:active {
       scale: 1;

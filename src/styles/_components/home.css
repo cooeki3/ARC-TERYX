@@ -1,6 +1,6 @@
 .landing-bg {
   position: absolute;
-  background-color: #fff;
+  background-color: var(--secondary-bg);
   top: 0;
   left: 0;
   width: 100%;

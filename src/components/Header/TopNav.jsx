@@ -13,7 +13,7 @@ import Logo from "../../assets/images/ARCTERYX_text_logo.svg?react";
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
 
-function TopNav({ langMenuRef, miniLogoRef, backdropRef }) {
+function TopNav({ langMenuRef, miniLogoRef, backdropRef, sectionCollectionRef }) {
     // ------------------------------Lang. Dropdown  anims.-----------------------------
     useLayoutEffect(() => {
         //Lang. Dropdown hover animation
@@ -62,7 +62,7 @@ function TopNav({ langMenuRef, miniLogoRef, backdropRef }) {
         const animateHeight = (height, radius, padding, enter) => {
             gsap.to(langDropdownBelow, {
                 height: height,
-                borderRadius: radius,
+                // borderRadius: radius,
                 duration: 0.6,
                 ease: customEase,
                 overwrite: "auto"
@@ -170,13 +170,45 @@ function TopNav({ langMenuRef, miniLogoRef, backdropRef }) {
             }
         };
 
+        // function initLogoScrollTriggers() {
+        //     const sections = gsap.utils.toArray("[data-logo]");
+
+        //     sections.forEach((section, index) => {
+        //         ScrollTrigger.create({
+        //             trigger: section,
+        //             start: "top 3%",
+
+        //             onEnter: () => changeLogo(section.dataset.logo),
+
+        //             onLeaveBack: () => {
+        //                 const previous = sections[index - 1];
+
+        //                 if (previous) {
+        //                     changeLogo(previous.dataset.logo);
+        //                 }
+        //             }
+        //         });
+        //     });
+
+        //     function changeLogo(theme) {
+        //         gsap.to(miniLogoRef.current.querySelectorAll('path, polygon'), {
+        //             fill: theme === 'black' ?
+        //                 '#000'
+        //                 : '#fff',
+        //             duration: 0.6,
+        //             ease: 'power4.out'
+        //         })
+        //     }
+        // }
+
+
         //Apelle des animations pour ouvrir le dropdown languages
         const onEnter = () => {
-            animateWidth(170);
+            animateWidth(210);
             animateHeight(478, '0.8rem', '1rem 1rem', true);
         }
         const onLeave = () => {
-            animateWidth(110);
+            animateWidth(125);
             animateHeight(40, '1.3rem', '0.7rem 1rem', false);
         }
 

@@ -4,12 +4,12 @@
   background-color: var(--secondary-bg);
   /* background-color: #fff; */
   background-size: 200% 200%;
-  padding: 80vh 0;
+  padding: 80vh 0 30vh 0;
   width: 100%;
   margin-top: -44vh;
   &::selection {
-    background-color: #fff;
-    color: #b1af99;
+    background-color: var(--secondary-text);
+    color: var(--secondary-bg);
   }
 
   .intro-anim-grid-container {
@@ -38,7 +38,8 @@
     align-items: flex-start;
     gap: 30px;
     margin-bottom: 400px;
-    width: 85%;
+    width: 75%;
+    max-width: 1440px;
     height: 100%;
     color: var(--secondary-text);
     margin: 100px auto 400px auto;
@@ -54,50 +55,55 @@
         right: 0;
         position: absolute;
         top: 50%;
-        transform: translateY(-50%);
-        width: 10px;
-        height: 10px;
+        transform: translateY(-30%);
+        width: 1em;
+        height: 1em;
       }
       span {
-        margin-left: 20px;
+        margin-left: 26px;
         position: absolute;
-        background-color: var(--secondary-text);
-        width: 10px;
-        height: 10px;
+        background-color: var(--secondary-text-opacity);
+        width: 0.75em;
+        height: 0.75em;
         border-radius: 100%;
         transform-origin: center;
       }
       span.animated {
         background-color: var(--secondary-text);
-        width: 10px;
-        height: 10px;
+        width: 0.75em;
+        height: 0.75em;
         border-radius: 100%;
         transform-origin: center;
         animation: circlePulse 1.7s ease-out infinite;
       }
 
       h4 {
-        font-weight: 500;
-        font-size: clamp(1rem, 0.95rem + 0.3vw, 1.125rem);
+        font-family: var(--font-accent);
+        font-weight: 400;
+        font-size: clamp(1rem, 3vw, 1.6rem);
+        color: var(--secondary-text-opacity);
       }
     }
     h1 {
       height: fit-content;
       font-weight: 400;
-      font-size: clamp(1rem, 8vw, 4.5rem);
-      font-family: var(--font-heading);
+      font-size: clamp(1rem, 4vw, 4.5rem);
+      font-family: var(--font-pixel-square);
       text-align: left;
-      /* display: flex; */
     }
 
     .text-img-container {
       /* white-space: nowrap; */
     }
 
+    .nowrap-container {
+      white-space: nowrap;
+    }
+
     .quote-inline-img {
       display: inline-flex;
       flex-shrink: 0;
-      height: clamp(20px, 8vw, 70px);
+      /* height: clamp(10px, 8vw, 70px); */
       width: 0%;
       vertical-align: middle;
       /* margin: 0 0.15em; */
@@ -105,12 +111,12 @@
 
       img {
         border-radius: 100%;
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
+        width: 1em;
+        height: 1em;
+        /* object-fit: cover; */
         transform-origin: center;
         &:not(:first-child) {
-          margin-left: -15px;
+          margin-left: -0.25em;
         }
       }
     }

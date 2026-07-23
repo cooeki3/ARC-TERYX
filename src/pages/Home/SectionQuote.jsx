@@ -27,6 +27,8 @@ export default function Quote() {
   const faqPRef = useRef();
   const questionRefs = useRef([]);
   const inlineImageRef = useRef();
+  const aboutUsRef = useRef();
+  const animatedCircleRef = useRef();
 
   const answerRefs = useRef([]);
   const iconRefs = useRef([]);
@@ -120,11 +122,17 @@ export default function Quote() {
     }
   }
 
-  // Entrance animations
+  //-----------------------------Split texts--------------------------
   useEffect(() => {
     const quoteSplit = new SplitText(quoteRef.current, {
       type: 'words, chars',
-      mask: 'words, chars',
+      mask: 'words',
+    });
+
+
+    const aboutUsSplit = new SplitText(aboutUsRef.current, {
+      type: "words",
+      mask: "words",
     });
 
     const faqHeadingSplit = new SplitText(faqH1Ref.current, {
@@ -202,17 +210,17 @@ export default function Quote() {
     // });
 
     // Y and mask anim.
-
+    // -----------------------Quote timline------------------------------
     let tlQuote = gsap.timeline({
       scrollTrigger: {
         trigger: '.h4-quote',
         start: 'top 80%',
-        // for tests:
         toggleActions: "restart none none reset"
       }
     });
 
-    tlQuote.fromTo(quoteSplit.words, {
+    // Entrance anim
+    tlQuote.fromTo([...aboutUsSplit.words, ...quoteSplit.words,], {
       yPercent: 100
     }, {
       yPercent: 0,
@@ -221,6 +229,19 @@ export default function Quote() {
       stagger: 0.02,
     }, 0
     )
+
+    tlQuote.fromTo(animatedCircleRef.current, {
+      opacity: 0,
+    }, {
+      opacity: 1,
+      duration: 1,
+      ease: 'power1.out',
+    }, 0.4
+    )
+
+    gsap.to('.quote-inline-img', {
+      // paddingLeft: '50vw'
+    })
 
     tlQuote.fromTo('.quote-inline-img',
       {
@@ -249,15 +270,6 @@ export default function Quote() {
       stagger: 0.08,
     }, 0.7
     )
-    // tlQuote.fromTo('.quote-inline-img img', {
-    //   opacity: 0,
-    // }, {
-    //   opacity: 1,
-    //   duration: 0.7,
-    //   ease: 'power4.out',
-    // }, ">-=0.7"
-    // )
-
 
     // H1 Opacity animation
     gsap.fromTo(quoteSplit.chars,
@@ -266,7 +278,7 @@ export default function Quote() {
       },
       {
         color: 'var( --secondary-text)',
-        stagger: 0.05,
+        stagger: 0.03,
         duration: 0.2,
         ease: 'power3.out',
         scrollTrigger: {
@@ -277,9 +289,6 @@ export default function Quote() {
         }
       })
 
-
-
-    console.log(document.contains(inlineImageRef.current)); // if false, that's your bug
     // Intro grid anim.
     gsap.fromTo('.intro-anim-grid-container > *', {
       transform: 'scaleY(1)',
@@ -342,20 +351,24 @@ export default function Quote() {
         <DotGrid />
         <div className="quote-text-container" ref={textContainerRef}>
           <div className="quote-flex-1">
-            <h4 className='h4-quote'>About us</h4>
-            <div className="animated-circle">
+            <h4 className='h4-quote' ref={aboutUsRef}>About us</h4>
+            <div className="animated-circle" ref={animatedCircleRef}>
               <span className='animated'></span>
               <span></span>
             </div>
           </div>
           <h1 className=' quote-flex-2 h1-quote' ref={quoteRef}>Built with
-            <span className='text-img-container'> materials
-              <span className='quote-inline-img' ref={inlineImageRef}>
-                <img src={imageMaterial01} alt="" />
-                <img src={imageMaterial02} alt="" />
-                <img src={imageMaterial03} alt="" />
-              </span>
-            </span> crafted<br />through precision and refined through every detail, creating equipment designed to endure the elements.</h1>
+            <span className="nowrap-container">
+              <span className='text-img-container'> materials
+                <span className='quote-inline-img' ref={inlineImageRef}>
+                  <img src={imageMaterial01} alt="" />
+                  <img src={imageMaterial02} alt="" />
+                  <img src={imageMaterial03} alt="" />
+                </span>
+              </span> crafted<br />
+            </span>
+            through precision and refined through every detail, creating equipment designed to endure the elements.
+          </h1>
         </div>
 
         <div className='section-faq'>

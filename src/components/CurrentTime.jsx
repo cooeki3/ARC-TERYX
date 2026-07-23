@@ -1,25 +1,56 @@
-// React imports
 import { useEffect, useState } from "react";
 
 export default function CurrentTime() {
-    const [time, setTime] = useState(new Date());
+    const [localTime, setLocalTime] = useState("");
+    const [hqTime, setHqTime] = useState("");
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setTime(new Date());
-        }, 1000);
+        const updateTime = () => {
+            const now = new Date();
+
+            const formatTime = (timeZone) =>
+                new Intl.DateTimeFormat("en-US", {
+                    hour: "2-digit",
+                    minute: "2-digit",
+                    second: "2-digit",
+                    timeZoneName: "short",
+                    hour12: false,
+                    timeZone,
+                }).format(now);
+
+            setLocalTime(formatTime(Intl.DateTimeFormat().resolvedOptions().timeZone));
+
+            setHqTime(formatTime("America/Vancouver"));
+        };
+
+        updateTime();
+
+        const interval = setInterval(updateTime, 1000);
 
         return () => clearInterval(interval);
     }, []);
 
     return (
-        <span className="current-time">
-            {time.toLocaleTimeString("en-US", {
-                hour: "2-digit",
-                minute: "2-digit",
-                second: "2-digit",
-                timeZoneName: "short",
-            })}
-        </span>
+        <div className="current-time">
+            <div className="time-row">
+                <span>LOCAL TIME</span>
+                <span>{localTime}</span>
+            </div>
+
+            <div className="time-row">
+                <span>ARC'TERYX HQ</span>
+                <span>{hqTime}</span>
+            </div>
+
+            <div className="time-row">
+                <span>BASE LOCATION</span>
+                <span>NORTH VANCOUVER, CANADA</span>
+            </div>
+
+            <div className="time-row">
+                <span>COORDINATES</span>
+                <span>49.3206° N / 122.9540° W</span>
+            </div>
+        </div>
     );
 }

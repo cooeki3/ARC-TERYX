@@ -66,7 +66,7 @@ function MenuNav() {
         const animateHeight = (height, radius, padding, enter) => {
             gsap.to(menuDropdownBelow, {
                 height: height,
-                borderRadius: radius,
+                // borderRadius: radius,
                 duration: 0.4,
                 ease: customEase,
                 overwrite: "auto"
@@ -176,7 +176,7 @@ function MenuNav() {
 
         //Apelle des animations pour ouvrir le dropdown menu
         const onEnter = () => {
-            animateWidth(250);
+            animateWidth(305);
             animateHeight(368, '0.8rem', '1rem 1rem', true); //Ajouter ou soustraire 62px au height du menu pour ajouter ou enlever un item du menu
         }
         const onLeave = () => {

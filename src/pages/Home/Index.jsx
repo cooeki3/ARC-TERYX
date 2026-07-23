@@ -42,6 +42,7 @@ export default function Index() {
     const miniLogoRef = useRef();
     const largeLogoRef = useRef();
     const landingBGRef = useRef();
+    const sectionCollectionRef = useRef();
 
     const skipIntro = false;
     const lenis = useLenis();
@@ -50,38 +51,6 @@ export default function Index() {
         if (!lenis) return;
         // GSAP context scopes animations to this component
         const ctx = gsap.context(() => {
-            // ---------------------------Logo color anim (by section)-----------------------
-            function initLogoScrollTriggers() {
-                const sections = gsap.utils.toArray("[data-logo]");
-
-                sections.forEach((section, index) => {
-                    ScrollTrigger.create({
-                        trigger: section,
-                        start: "top 3%",
-
-                        onEnter: () => changeLogo(section.dataset.logo),
-
-                        onLeaveBack: () => {
-                            const previous = sections[index - 1];
-
-                            if (previous) {
-                                changeLogo(previous.dataset.logo);
-                            }
-                        }
-                    });
-                });
-
-                function changeLogo(theme) {
-                    gsap.to(miniLogoRef.current.querySelectorAll('path, polygon'), {
-                        fill: theme === 'black' ?
-                            '#000'
-                            : '#fff',
-                        duration: 0.6,
-                        ease: 'power4.out'
-                    })
-                }
-            }
-
 
             // ------------------------------Intro anim-------------------------------------------
             if (skipIntro) {
@@ -95,7 +64,18 @@ export default function Index() {
                     opacity: 1
                 })
 
-                initLogoScrollTriggers();
+
+                gsap.set(largeLogoRef.current, {
+                    y: 0,
+                    yPercent: 0,
+                },
+                )
+
+                gsap.set('.landing-logo-container', {
+                    width: '100%',
+                },
+                );
+
             }
             else {
                 const heroTitleSplit = new SplitText(heroTitleRef.current, {
@@ -194,8 +174,8 @@ export default function Index() {
                 }, 1.8)
 
                 // Init Logo color anim on scroll (based on sections)
-                tl.call(initLogoScrollTriggers,
-                    [], 2.4);
+                // tl.call(initLogoScrollTriggers,
+                //     [], 2.4);
 
                 // Nav lang. anim.
                 tl.fromTo('.nav__lang-dropdown-container',
@@ -261,6 +241,35 @@ export default function Index() {
             //     animation: tl,
             // });
 
+            // Mini-logo display
+            gsap.set(miniLogoRef.current, {
+                yPercent: -100,
+            });
+
+            ScrollTrigger.create({
+                trigger: sectionCollectionRef.current,
+                start: "top top+=18vh",
+                // markers: true,
+                onEnter: () => {
+                    gsap.to(miniLogoRef.current, {
+                        yPercent: 0,
+                        scale: 1,
+                        opacity: 1,
+                        duration: 0.5,
+                    });
+                },
+
+                onLeaveBack: () => {
+                    gsap.to(miniLogoRef.current, {
+                        yPercent: 100,
+                        scale: 0.95,
+                        opacity: 0,
+                        duration: 0.5,
+                    });
+                },
+            });
+
+
         })
 
         // Revert all GSAP changes when component is removed
@@ -273,6 +282,7 @@ export default function Index() {
             <TopNav
                 langMenuRef={langMenuRef}
                 miniLogoRef={miniLogoRef}
+                sectionCollectionRef={sectionCollectionRef}
             />
             <div className='landing-logo-container'>
                 <Logo ref={largeLogoRef} />
@@ -284,7 +294,7 @@ export default function Index() {
                 heroPRef={heroPRef}
             />
             {/*-------------------------------- Sections---------------------------------- */}
-            <SectionCollection />
+            <SectionCollection sectionCollectionRef={sectionCollectionRef} />
             <SectionQuote />
             <SectionInfiniteSwiper />
             {/*--------------------------------------------------------------------------- */}

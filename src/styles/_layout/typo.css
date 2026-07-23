@@ -1,5 +1,43 @@
 /* -------------------------- Geist ------------------------------ */
+@font-face {
+  font-family: "Geist";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("../../assets/fonts/Geist/Geist[wght].woff2") format("woff2");
+} /* -------------------------- Geist Mono ------------------------------ */
+@font-face {
+  font-family: "Geist Mono";
+  font-style: normal;
+  font-weight: 100 900;
+  src: url("../../assets/fonts/GeistMono/GeistMono[wght].woff2") format("woff2");
+} /* -------------------------- Geist Pixel ------------------------------ */
+@font-face {
+  font-family: "Geist Pixel Square";
+  src: url("../../assets/fonts/GeistPixel/GeistPixel-Square.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Geist Pixel Circle";
+  src: url("../../assets/fonts/GeistPixel/GeistPixel-Circle.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Geist Pixel Triangle";
+  src: url("../../assets/fonts/GeistPixel/GeistPixel-Triangle.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Geist Pixel Grid";
+  src: url("../../assets/fonts/GeistPixel/GeistPixel-Grid.woff2")
+    format("woff2");
+}
+@font-face {
+  font-family: "Geist Pixel Line";
+  src: url("../../assets/fonts/GeistPixel/GeistPixel-Line.woff2")
+    format("woff2");
+}
 
+/* -------------------------- Vercetti ------------------------------ */
 @font-face {
   font-family: "Vercetti";
   font-style: normal;

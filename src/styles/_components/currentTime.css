@@ -1,4 +1,14 @@
 .current-time {
   font-variant-numeric: tabular-nums;
-  /* letter-spacing: 1.5px; */
+  display: flex;
+  flex-direction: column;
+  width: 20vw;
+}
+
+.time-row {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  font-size: clamp(0.6rem, 0.5rem + 0.25vw, 0.75rem);
+  /* align-items: ; */
 }
