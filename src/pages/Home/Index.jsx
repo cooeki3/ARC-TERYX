@@ -54,7 +54,7 @@ export default function Index() {
     const landingBGRef = useRef();
     const sectionCollectionRef = useRef();
 
-    const skipIntro = true;
+    const skipIntro = false;
     const lenis = useLenis();
 
     useLayoutEffect(() => {
