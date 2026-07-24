@@ -21,6 +21,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools, SlowMo);
 import "../../styles/style.css";
 
 // Component imports
+import CustomCursor from '../../components/CustomCursor.jsx';
 // Navs
 import TopNav from '../../components/Header/TopNav.jsx';
 import MenuNav from '../../components/Header/MenuNav.jsx';
@@ -76,6 +77,7 @@ export default function Index() {
 
 
                 gsap.set(largeLogoRef.current, {
+                    opacity: 0,
                     y: 0,
                     yPercent: 0,
                 },
@@ -100,11 +102,11 @@ export default function Index() {
 
                 const tl = gsap.timeline();
                 // Text logo anim.
-                gsap.set(largeLogoRef.current, {
-                    display: 'block',
-                    y: window.innerHeight,
-                    opacity: 1,
-                })
+                // gsap.set(largeLogoRef.current, {
+                //     display: 'block',
+                //     y: window.innerHeight,
+                //     opacity: 1,
+                // })
 
                 // gsap.set(largeLogoRef.current.querySelectorAll('path, polygon'), {
                 //     fill: '#b1af99'
@@ -116,14 +118,28 @@ export default function Index() {
                 )
 
                 gsap.set(largeLogoRef.current, {
+                    opacity: 0,
                     yPercent: -50,
+                    y: window.innerHeight / 2 - 60,
                 });
 
-                tl.to(largeLogoRef.current, {
-                    y: window.innerHeight / 2 - 60,
-                    duration: 1.6,
-                    ease: "power3.out",
-                }, 0)
+
+                gsap.fromTo(largeLogoRef.current, {
+                    opacity: 0,
+                    filter: 'blur(10px)',
+                }, {
+                    opacity: 1,
+                    filter: 'blur(0px)',
+                    duration: 2,
+                    ease: 'power4.out'
+                }
+                );
+
+                // tl.to(largeLogoRef.current, {
+                //     y: window.innerHeight / 2 - 60,
+                //     duration: 1.6,
+                //     ease: "power3.out",
+                // }, 0)
 
                 // Landing BG anim.
                 tl.fromTo('.landing-bg', {
@@ -270,41 +286,45 @@ export default function Index() {
     }, [lenis])
 
     return (
-        <section className="page-wrapper">
-            <div className="landing-bg" ref={landingBGRef}></div>
-            <TopNav
-                langMenuRef={langMenuRef}
-                miniLogoRef={miniLogoRef}
-                sectionCollectionRef={sectionCollectionRef}
-            />
-            <div className='landing-logo-container'>
-                <Logo ref={largeLogoRef} />
-            </div>
-            <MenuNav />
-            <BottomNav />
-            <Hero
-                heroTitleRef={heroTitleRef}
-                heroPRef={heroPRef}
-            />
-            {/*-------------------------------- Sections---------------------------------- */}
-            <SectionCollection sectionCollectionRef={sectionCollectionRef} />
-            <SectionQuote />
-            <SectionInfiniteSwiper lenis={lenis}>
-                <img src={imageARCTERYXSlide01} alt="" />
-                <img src={imageARCTERYXSlide02} alt="" />
-                <img src={imageARCTERYXSlide03} alt="" />
-                <img src={imageARCTERYXSlide04} alt="" />
-                <img src={imageARCTERYXSlide05} alt="" />
-            </SectionInfiniteSwiper>
-            {/*--------------------------------------------------------------------------- */}
-            <Footer />
+        <>
+            <CustomCursor />
+            <section className="page-wrapper">
+                <div className="landing-bg" ref={landingBGRef}></div>
+                <TopNav
+                    langMenuRef={langMenuRef}
+                    miniLogoRef={miniLogoRef}
+                    sectionCollectionRef={sectionCollectionRef}
+                />
+                <div className='landing-logo-container'>
+                    <Logo ref={largeLogoRef} />
+                </div>
+                <MenuNav />
+                <BottomNav />
+                <Hero
+                    heroTitleRef={heroTitleRef}
+                    heroPRef={heroPRef}
+                />
+                {/*-------------------------------- Sections---------------------------------- */}
+                <div className='collection-nav-target'></div>
+                <SectionCollection sectionCollectionRef={sectionCollectionRef} />
+                <SectionQuote />
+                <SectionInfiniteSwiper lenis={lenis}>
+                    <img src={imageARCTERYXSlide01} alt="" />
+                    <img src={imageARCTERYXSlide02} alt="" />
+                    <img src={imageARCTERYXSlide03} alt="" />
+                    <img src={imageARCTERYXSlide04} alt="" />
+                    <img src={imageARCTERYXSlide05} alt="" />
+                </SectionInfiniteSwiper>
+                {/*--------------------------------------------------------------------------- */}
+                <Footer />
 
-            {/* <div
+                {/* <div
                 onMouseDown={() => console.log('test div clicked')}
                 style={{ padding: 40, background: 'red', color: 'white' }}
-            >
+                >
                 click me
-            </div> */}
-        </section>
+                </div> */}
+            </section>
+        </>
     )
 }

@@ -9,6 +9,7 @@ function DotGrid() {
 
         let width;
         let height;
+        let rect;
         let animationFrame;
 
         const dots = [];
@@ -21,10 +22,11 @@ function DotGrid() {
 
         const spacing = 55;
         const radius = 1.3;
-        const influence = 160;
+        const influence = 220;
 
         function resize() {
-            const rect = canvas.getBoundingClientRect();
+            rect = canvas.getBoundingClientRect();
+
             const dpr = window.devicePixelRatio || 1;
 
             canvas.width = rect.width * dpr;
@@ -44,11 +46,7 @@ function DotGrid() {
                         y,
                         ox: x,
                         oy: y,
-
-                        velocityX: 0,
-                        velocityY: 0,
-
-                        opacity: 0.15,
+                        opacity: 0.12,
                         size: radius,
                         hover: 0,
                     });
@@ -57,49 +55,28 @@ function DotGrid() {
         }
 
         function draw() {
+            const now = performance.now();
+
             ctx.clearRect(0, 0, width, height);
 
-            const time = Date.now() * 0.001;
-
-            const rect = canvas.getBoundingClientRect();
+            rect = canvas.getBoundingClientRect();
 
             const localMouse = {
                 x: mouse.x !== null ? mouse.x - rect.left : null,
                 y: mouse.y !== null ? mouse.y - rect.top : null,
             };
 
-
             dots.forEach(dot => {
                 let targetX = dot.ox;
                 let targetY = dot.oy;
-
                 let distance = Infinity;
 
-
-                // Floating wave
-                const wave = Math.sin(
-                    dot.ox * 0.005 +
-                    dot.oy * 0.008 +
-                    time * 0.8
-                );
-
-                targetY += wave * 12;
-
-                targetX += Math.cos(
-                    dot.oy * 0.01 +
-                    time * 0.7
-                ) * 1.5;
-
-
-
-                // Mouse interaction
                 if (localMouse.x !== null) {
                     const dx = localMouse.x - dot.x;
                     const dy = localMouse.y - dot.y;
 
                     distance = Math.sqrt(
-                        dx * dx +
-                        dy * dy
+                        dx * dx + dy * dy
                     );
 
                     if (distance < influence) {
@@ -111,13 +88,9 @@ function DotGrid() {
                     }
                 }
 
-
-
-                // Liquid ripple
-                const now = performance.now();
-
                 ripples.forEach(ripple => {
-                    const age = (now - ripple.start) / 1000;
+                    const age =
+                        (now - ripple.start) / 1000;
 
                     const rippleRadius = age * 600;
                     const waveWidth = 80;
@@ -126,18 +99,17 @@ function DotGrid() {
                     const dy = dot.oy - ripple.y;
 
                     const dist = Math.sqrt(
-                        dx * dx +
-                        dy * dy
+                        dx * dx + dy * dy
                     );
 
+                    const difference =
+                        dist - rippleRadius;
 
-                    const difference = dist - rippleRadius;
-
-                    const strength = Math.exp(
-                        -(difference * difference) /
-                        (2 * waveWidth * waveWidth)
-                    );
-
+                    const strength =
+                        Math.exp(
+                            -(difference * difference) /
+                            (2 * waveWidth * waveWidth)
+                        );
 
                     if (dist > 0.001) {
                         const nx = dx / dist;
@@ -145,66 +117,38 @@ function DotGrid() {
 
                         targetX += nx * strength * 12;
                         targetY += ny * strength * 12;
-
                         targetY -= strength * 8;
-
-                        // dot.opacity += strength * 0.15;
                     }
                 });
 
+                dot.x += (targetX - dot.x) * 0.08;
+                dot.y += (targetY - dot.y) * 0.08;
 
+                let hover = 0;
 
-                // Physics movement
-                dot.velocityX +=
-                    (targetX - dot.x) * 0.002;
+                if (distance < influence) {
+                    hover = 1 - distance / influence;
+                }
 
-                dot.velocityY +=
-                    (targetY - dot.y) * 0.002;
+                const hoverSpeed = hover > dot.hover ? 0.12 : 0.035;
 
-
-                dot.velocityX *= 0.92;
-                dot.velocityY *= 0.92;
-
-
-                dot.x += dot.velocityX;
-                dot.y += dot.velocityY;
-
-
-
-                // Hover animation
-                const hover =
-                    distance < influence ? 1 : 0;
-
-                dot.hover +=
-                    (hover - dot.hover) * 0.015;
-
-
-
-                // Opacity
-                const waveBrightness =
-                    (wave + 1) / 2;
+                dot.hover += (hover - dot.hover) * hoverSpeed;
 
                 const targetOpacity =
-                    0.05 +
-                    waveBrightness * 0.12 +
-                    dot.hover * 0.25;
+                    0.15 + dot.hover * 0.40;
 
+                const opacitySpeed =
+                    targetOpacity > dot.opacity ? 0.12 : 0.04;
 
                 dot.opacity +=
-                    (targetOpacity - dot.opacity) * 0.05;
+                    (targetOpacity - dot.opacity) * opacitySpeed;
 
-
-
-                // Size
                 const targetSize =
-                    radius + dot.hover * 1;
+                    radius + dot.hover * 4;
 
                 dot.size +=
                     (targetSize - dot.size) * 0.015;
 
-
-
-                // Draw
                 ctx.beginPath();
 
                 ctx.arc(
@@ -216,76 +160,61 @@ function DotGrid() {
                 );
 
                 ctx.fillStyle =
-                    `rgba(49, 49, 51, ${dot.opacity})`;
+                    `rgba(49,49,51,${dot.opacity})`;
 
                 ctx.fill();
             });
 
-
-
-            // Remove old ripples
             for (let i = ripples.length - 1; i >= 0; i--) {
-                if (
-                    performance.now() -
-                    ripples[i].start >
-                    1800
-                ) {
+                if (now - ripples[i].start > 1800) {
                     ripples.splice(i, 1);
                 }
             }
 
-
             animationFrame = requestAnimationFrame(draw);
         }
-
-
 
         function move(e) {
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         }
 
-
         function leave() {
             mouse.x = null;
             mouse.y = null;
         }
 
-
         function click(e) {
-            const rect =
-                canvas.getBoundingClientRect();
+            const clickRect = canvas.getBoundingClientRect();
+
+            if (ripples.length >= 3) {
+                ripples.shift();
+            }
 
             ripples.push({
-                x: e.clientX - rect.left,
-                y: e.clientY - rect.top,
+                x: e.clientX - clickRect.left,
+                y: e.clientY - clickRect.top,
                 start: performance.now(),
             });
         }
 
-
-
         resize();
         draw();
 
-
         window.addEventListener("resize", resize);
-        window.addEventListener("mousemove", move);
-        window.addEventListener("mouseleave", leave);
+        window.addEventListener("pointermove", move);
+        canvas.addEventListener("mouseleave", leave);
         window.addEventListener("click", click);
-
 
         return () => {
             cancelAnimationFrame(animationFrame);
 
             window.removeEventListener("resize", resize);
-            window.removeEventListener("mousemove", move);
-            window.removeEventListener("mouseleave", leave);
+            window.removeEventListener("pointermove", move);
+            canvas.removeEventListener("mouseleave", leave);
             window.removeEventListener("click", click);
         };
-
     }, []);
-
 
     return (
         <canvas

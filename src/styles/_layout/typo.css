@@ -41,8 +41,8 @@
 @font-face {
   font-family: "Vercetti";
   font-style: normal;
-  font-weight: 100 900;
-  src: url("../../assets/fonts/Vercetti/Vercetti[wght].woff2") format("woff2");
+  font-weight: 500;
+  src: url("../../assets/fonts/Vercetti/Vercetti.woff2") format("woff2");
 }
 
 /* --------------------------Creato Display------------------------------ */

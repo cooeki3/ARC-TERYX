@@ -42,7 +42,8 @@
     max-width: 1440px;
     height: 100%;
     color: var(--secondary-text);
-    margin: 100px auto 400px auto;
+    margin: 0 auto 400px auto;
+    padding-top: 100px;
     .quote-flex-1 {
       display: flex;
       flex-direction: row;
