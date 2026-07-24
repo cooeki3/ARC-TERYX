@@ -19,32 +19,38 @@ import {
   videoHero,
 } from "../../assets/videos";
 
+import HeroGrid from '../../components/HeroGrid.jsx';
+
 function Hero({ heroTitleRef, heroPRef }) {
 
   return (
-    <div className='section-hero' data-logo='white'>
-      {/* <img src={imageHeroBackground} className='hero-bg' alt="Home background" /> */}
-      <div className="hero-bg">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          onLoadedMetadata={(e) => {
-            e.currentTarget.currentTime = 2;
-          }}
-          className='landing-video'
+    <>
+      <HeroGrid />
+
+      <div className='section-hero' data-logo='white'>
+        {/* <img src={imageHeroBackground} className='hero-bg' alt="Home background" /> */}
+        <div className="hero-bg">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            onLoadedMetadata={(e) => {
+              e.currentTarget.currentTime = 2;
+            }}
+            className='landing-video'
+          >
+            <source src={videoHero} type="video/mp4" />
+          </video>
+        </div>
+        <div
+          className='text-container'
         >
-          <source src={videoHero} type="video/mp4" />
-        </video>
+          <h1 ref={heroTitleRef}><span>Feel</span> the quality</h1>
+          <p ref={heroPRef}>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </p>
+        </div>
       </div>
-      <div
-        className='text-container'
-      >
-        <h1 ref={heroTitleRef}><span>Feel</span> the quality</h1>
-        <p ref={heroPRef}>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </p>
-      </div>
-    </div>
+    </>
   )
 }
 

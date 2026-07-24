@@ -348,10 +348,10 @@ export default function Quote() {
           ))}
         </div>
 
-        <DotGrid />
+        <DotGrid addClass='quote-grid' />
         <div className="quote-text-container" ref={textContainerRef}>
           <div className="quote-flex-1">
-            <h4 className='h4-quote' ref={aboutUsRef}>About us</h4>
+            <h4 className='h4-quote' ref={aboutUsRef}> [ About us ] </h4>
             <div className="animated-circle" ref={animatedCircleRef}>
               <span className='animated'></span>
               <span></span>
@@ -367,7 +367,7 @@ export default function Quote() {
                 </span>
               </span> crafted<br />
             </span>
-            through precision and refined through every detail, creating equipment designed to endure the elements.
+            through precision and refined through every detail. We create equipment designed to endure the elements.
           </h1>
         </div>
 

@@ -27,6 +27,8 @@ import {
 } from "../../assets/images";
 
 function SectionCollection({ sectionCollectionRef }) {
+  const collectionH1Ref = useRef();
+  const collectionBtnRef = useRef();
 
   useLayoutEffect(() => {
     //Initialize the swiper
@@ -107,6 +109,16 @@ function SectionCollection({ sectionCollectionRef }) {
     });
 
     // --------------------------------Intro anim.-------------------------
+    const collectionH1Split = new SplitText(collectionH1Ref.current, {
+      type: 'lines',
+      mask: 'lines',
+    });
+
+    const collectionBtnSplit = new SplitText(collectionBtnRef.current, {
+      type: 'lines',
+      mask: 'lines',
+    });
+
     // Tl for anim
     const tl = gsap.timeline({
       scrollTrigger: {
@@ -118,19 +130,49 @@ function SectionCollection({ sectionCollectionRef }) {
 
 
     // H1 anim
-    tl.fromTo(
-      ".section-collection-text",
+    tl.fromTo(collectionH1Split.lines,
       {
         yPercent: 100,
-        opacity: 0,
       },
       {
         yPercent: 0,
-        opacity: 1,
+
         duration: 1.1,
         ease: "power4.out",
         stagger: 0.08,
-      }, 0
+      }, 0.3
+    )
+
+    tl.fromTo(collectionBtnRef.current,
+      {
+        transform: 'scaleX(0)',
+        opacity: 0,
+        yPercent: 100,
+      },
+      {
+        transform: 'scaleX(1)',
+        opacity: 1,
+        yPercent: 0,
+
+        duration: 1.1,
+        ease: "power4.out",
+        stagger: 0.08,
+      }, 0.3
+    )
+
+    tl.fromTo(collectionBtnSplit.lines,
+      {
+        opacity: 0,
+        yPercent: 100,
+      },
+      {
+        opacity: 1,
+        yPercent: 0,
+
+        duration: 1.1,
+        ease: "power4.out",
+        stagger: 0.08,
+      }, 0.9
     )
 
     // Slide up anim
@@ -147,24 +189,9 @@ function SectionCollection({ sectionCollectionRef }) {
       }, 0
     )
 
-    // Text opacity anim
-    tl.fromTo(
-      ".section-collection-card-text",
-      {
-        opacity: 0,
-      },
-      {
-        opacity: 1,
-        delay: 0.5,
-        duration: 0.7,
-        ease: "power4.out",
-        stagger: 0.04,
-      }, 0
-    )
-
     // Add button scale anim
     tl.fromTo(
-      ".section-collection-product-add-button",
+      ".product-add-button",
       {
         opacity: 0,
         scale: 0,
@@ -267,9 +294,9 @@ function SectionCollection({ sectionCollectionRef }) {
   return (
     <div className='section-collection' ref={sectionCollectionRef} data-logo='black'>
       <div className='section-collection-text'>
-        <h1 className='section-collection-h1'>Winter ‘26 collection</h1>
+        <h1 className='section-collection-h1' ref={collectionH1Ref}>Winter ‘26 collection</h1>
         {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}
-        <button className='section-collection-button'>Learn more</button>
+        <button className='section-collection-button' ref={collectionBtnRef}>Learn more</button>
       </div>
 
       <div className='section-collection-swiper swiper'>

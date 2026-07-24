@@ -1,0 +1,21 @@
+.hero-grid {
+  position: absolute;
+  top: 0;
+  left: 0;
+z-index: 50;
+  width: 100%;
+  height: 110vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(var(--cols), 1fr);
+  grid-template-rows: repeat(var(--rows), 1fr);
+}
+
+.hero-grid__cell {
+  background-color: transparent;
+  transition: background-color 0.15s ease;
+}
+
+.hero-grid__cell.is-active {
+  background-color: #b1b1b1;
+}

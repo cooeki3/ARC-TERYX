@@ -13,6 +13,12 @@ import imageARCTERYXProduct03 from "./ARCTERYX_swiper_product_03.png";
 import imageARCTERYXProduct04 from "./ARCTERYX_swiper_product_04.png";
 import imageARCTERYXProduct05 from "./ARCTERYX_swiper_product_05.png";
 
+import imageARCTERYXSlide01 from "./ARCTERYX_infinite_slide01.jpg";
+import imageARCTERYXSlide02 from "./ARCTERYX_infinite_slide02.jpg";
+import imageARCTERYXSlide03 from "./ARCTERYX_infinite_slide03.jpg";
+import imageARCTERYXSlide04 from "./ARCTERYX_infinite_slide04.jpg";
+import imageARCTERYXSlide05 from "./ARCTERYX_infinite_slide05.jpg"
+    ;
 import imageHeroBackground from "./BG_Hero_v2.png";
 
 import imageMaterial01 from "./ARCTERYX_material_01.jpg";
@@ -37,6 +43,12 @@ export {
     imageARCTERYXProduct03,
     imageARCTERYXProduct04,
     imageARCTERYXProduct05,
+
+    imageARCTERYXSlide01,
+    imageARCTERYXSlide02,
+    imageARCTERYXSlide03,
+    imageARCTERYXSlide04,
+    imageARCTERYXSlide05,
 
     imageHeroBackground,
 

@@ -16,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase);
 // Other imports
 import DotGrid from '../DotGrid';
 import Logo from "../../assets/images/ARCTERYX_logo.svg?react";
+import { FaInstagram, FaFacebookF, FaXTwitter } from "react-icons/fa6";
 
 import {
   imageFacebookIcon,
@@ -31,58 +32,42 @@ function Footer() {
       <div className="footer-inner">
         <DotGrid />
         <div className="footer-row-1">
-          <a href=""> <Logo className='footer-logo' /></a>
+          <div className="logo-socials-container">
+            <a href="">
+              <Logo className='footer-logo' />
+            </a>
+            <div className="footer-socials">
+              <a href=""><FaInstagram className='social-icon' /></a>
+              <a href=""><FaFacebookF className='social-icon' /></a>
+              <a href=""><FaXTwitter className='social-icon' /></a>
+            </div>
+          </div>
+
           <div className='footer-links'>
             <div className="footer-col link-hover-anim">
-              <h4>Shop</h4>
-              <a href="#">New Arrivals</a>
-              <a href="#">Best Sellers</a>
-              <a href="#">All Products</a>
-              <a href="#">Backpacks</a>
-              <a href="#">Camping</a>
-              <a href="#">Survival Gear</a>
-              <a href="#">Footwear</a>
-              <a href="#">Accessories</a>
-              <a href="#">Gift Cards</a>
-              <a href="#">Sale</a>
+              <h4>Explore</h4>
+              <a href="#home">Home</a>
+              <a href="#collection">New Collection</a>
+              <a href="#about">About Us</a>
+              <a href="#faq">FAQ</a>
             </div>
+
             <div className="footer-col link-hover-anim">
-              <h4>Collections</h4>
-              <a href="#">Winter Collection</a>
-              <a href="#">Weekend Camping</a>
-              <a href="#">Trail Running</a>
-              <a href="#">Bushcraft</a>
-              <a href="#">Travel Gear</a>
-              <a href="#">Everyday Carry</a>
-              <a href="#">Waterproof</a>
-              <a href="#">Lightweight Picks</a>
-              <a href="#">Premium Series</a>
+              <h4>Contact</h4>
+              <a href="#contact">Contact</a>
+              <p>Arc'teryx HQ</p>
+              <a href='https://maps.app.goo.gl/wMi11QeTpfH1MoUC9' target="_blank">
+                2220 Dollarton Hwy #110,<br />
+                North Vancouver, BC
+                V7H 3A7</a>
+              <a href='mailto:info@arcteryx.com'>info@arcteryx.com</a>
             </div>
+
             <div className="footer-col link-hover-anim">
-              <h4>Company</h4>
-              <a href="#">About Us</a>
-              <a href="#">Our Story</a>
-              <a href="#">Sustainability</a>
-              <a href="#">Careers</a>
-              <a href="#">Blog</a>
-              <a href="#">Press</a>
-              <a href="#">Partners</a>
-              <a href="#">Affiliates</a>
-              <a href="#">Reviews</a>
-              <a href="#">Store Locator</a>
-            </div>
-            <div className="footer-col link-hover-anim">
-              <h4>Help</h4>
-              <a href="#">Contact Us</a>
-              <a href="#">FAQs</a>
-              <a href="#">Shipping Information</a>
-              <a href="#">Returns & Exchanges</a>
-              <a href="#">Order Tracking</a>
-              <a href="#">Warranty</a>
-              <a href="#">Product Care</a>
-              <a href="#">Size Guide</a>
-              <a href="#">Payment Methods</a>
-              <a href="#">Accessibility</a>
+              <h4>Legal</h4>
+              <a href="#">Privacy Policy</a>
+              <a href="#">Cookie Policy</a>
+              <a href="#">Terms & Conditions</a>
             </div>
           </div>
           <div className="footer-newsletter">
@@ -98,25 +83,29 @@ function Footer() {
         </div>
         <div className="footer-row-2 ">
           <div className="footer-row-2-1">
-            <div className="footer-socials">
-              <a href=""><img src={imageInstagramIcon} alt="Instagram icon" /></a>
-              <a href=""><img src={imageFacebookIcon} alt="Facebook icon" /></a>
-              <a href=""><img src={imageXIcon} alt="X icon" /></a>
-            </div>
-            <button className="footer-button">
+            {/* <div className="footer-socials">
+              <a href=""><FaInstagram className='social-icon' /></a>
+              <a href=""><FaFacebookF className='social-icon' /></a>
+              <a href=""><FaXTwitter className='social-icon' /></a>
+            </div> */}
+            {/* <button className="footer-button">
               <span className='button-text'>Contact us</span>
               <span className="material-symbols-outlined">
                 arrow_outward
-              </span></button>
+              </span>
+            </button> */}
           </div>
           <div className="footer-row-2-2">
-            <hr />
+            {/* <hr /> */}
           </div>
           <div className="bottom-links link-hover-anim">
-            <a href="">Privacy policy</a>
+            {/* <a href="">Privacy policy</a>
+            <span>/</span>
             <a href="">Cookie policy</a>
+            <span>/</span>
             <a href="">Terms & conditions</a>
-            <a href="">Site by Alexandre Gratton</a>
+            <span>/</span> */}
+            <a href="">[ Site by Alexandre Gratton ]</a>
           </div>
         </div>
       </div>

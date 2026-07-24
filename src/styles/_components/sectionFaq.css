@@ -47,6 +47,7 @@
     font-size: 1.25rem;
     font-family: var(--font-body);
     text-align: start;
+    text-transform: uppercase;
   }
 
   .faq-list .faq-item:first-child .faq-summary {

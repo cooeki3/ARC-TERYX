@@ -1,6 +1,6 @@
 .section-collection {
   position: relative;
-  z-index: 10;
+  z-index: 55;
   background-color: #fff;
   padding: 120px 60px 250px 60px;
   width: 100%;
@@ -32,18 +32,20 @@
   }
 
   .section-collection-button {
+    transform-origin: left;
     transform: translateZ(0);
     backface-visibility: hidden;
     cursor: pointer;
     /* margin-top: 0px; */
     border: solid 1px var(--secondary-text);
-    border-radius: 999px;
+    /* border-radius: 999px; */
     padding: 8px 16px;
     width: fit-content;
     font-weight: 400;
     font-family: var(--font-body);
     user-select: none;
     white-space: nowrap;
+    text-transform: uppercase;
     &:hover {
       transition: all 0.1s ease;
       background-color: var(--secondary-text);
@@ -188,7 +190,7 @@
     align-items: center;
     z-index: 100;
     cursor: pointer;
-    border-radius: 100%;
+    /* border-radius: 100%; */
     background-color: var(--secondary-text);
     width: 40px;
     height: 40px;

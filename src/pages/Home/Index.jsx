@@ -30,9 +30,19 @@ import Hero from './Hero.jsx';
 // Sections
 import SectionCollection from './SectionCollection.jsx';
 import SectionQuote from './SectionQuote.jsx';
-import SectionInfiniteSwiper from './SectionInifiteSwiper.jsx';
+import SectionInfiniteSwiper from './SectionInfiniteSwiper.jsx';
 // Footer
 import Footer from '../../components/Footer/Footer.jsx';
+
+// Other imports
+import {
+    imageARCTERYXSlide01,
+    imageARCTERYXSlide02,
+    imageARCTERYXSlide03,
+    imageARCTERYXSlide04,
+    imageARCTERYXSlide05,
+
+} from "../../assets/images";
 
 export default function Index() {
     const heroTitleRef = useRef();
@@ -44,7 +54,7 @@ export default function Index() {
     const landingBGRef = useRef();
     const sectionCollectionRef = useRef();
 
-    const skipIntro = false;
+    const skipIntro = true;
     const lenis = useLenis();
 
     useLayoutEffect(() => {
@@ -81,28 +91,11 @@ export default function Index() {
                 const heroTitleSplit = new SplitText(heroTitleRef.current, {
                     type: 'lines',
                     mask: 'lines',
-                    // autoSplit: true,
-                    // onSplit(self) {
-                    //     gsap.from(self.lines, {
-                    //         yPercent: 100,
-                    //         duration: 1.2,
-                    //         stagger: 0.08,
-                    //         ease: 'power4.out',
-                    //     });
-                    // }
                 });
+
                 const heroPSplit = new SplitText(heroPRef.current, {
                     type: 'lines',
                     mask: 'lines',
-                    // autoSplit: true,
-                    // onSplit(self) {
-                    //     gsap.from(self.lines, {
-                    //         yPercent: 100,
-                    //         duration: 1.2,
-                    //         stagger: 0.08,
-                    //         ease: 'power4.out',
-                    //     });
-                    // }
                 });
 
                 const tl = gsap.timeline();
@@ -296,9 +289,22 @@ export default function Index() {
             {/*-------------------------------- Sections---------------------------------- */}
             <SectionCollection sectionCollectionRef={sectionCollectionRef} />
             <SectionQuote />
-            <SectionInfiniteSwiper />
+            <SectionInfiniteSwiper lenis={lenis}>
+                <img src={imageARCTERYXSlide01} alt="" />
+                <img src={imageARCTERYXSlide02} alt="" />
+                <img src={imageARCTERYXSlide03} alt="" />
+                <img src={imageARCTERYXSlide04} alt="" />
+                <img src={imageARCTERYXSlide05} alt="" />
+            </SectionInfiniteSwiper>
             {/*--------------------------------------------------------------------------- */}
             <Footer />
+
+            {/* <div
+                onMouseDown={() => console.log('test div clicked')}
+                style={{ padding: 40, background: 'red', color: 'white' }}
+            >
+                click me
+            </div> */}
         </section>
     )
 }
