@@ -28,7 +28,7 @@ export default function BottomNav() {
         ScrollTrigger.create({
             trigger: ".section-hero",
             start: "top+=10% top",
-            markers: true,
+
 
             onEnter: () => {
                 gsap.set('.section-bottom-nav .col', {
