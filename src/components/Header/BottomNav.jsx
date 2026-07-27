@@ -12,7 +12,7 @@ import CurrentTime from '../CurrentTime';
 // Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools);
 
-export default function BottomNav() {
+export default function BottomNav({ localTimeRef, hqTimeRef, startClock }) {
     const bottomNavRef = useRef();
 
     useLayoutEffect(() => {
@@ -108,7 +108,11 @@ export default function BottomNav() {
                 </a>
             </div>
             <div className="col col-2">
-                <CurrentTime />
+                <CurrentTime
+                    localTimeRef={localTimeRef}
+                    hqTimeRef={hqTimeRef}
+                    startClock={startClock}
+                />
             </div>
         </div>
     )

@@ -226,11 +226,13 @@ function TopNav({ langMenuRef, miniLogoRef, backdropRef, sectionCollectionRef })
         <>
             <nav className='section-lang__nav' id='nav'>
                 <div className="1stNavElement"></div>
-                <Logo
-                    alt="Arc'teryx Logo"
-                    className='text-logo'
-                    ref={miniLogoRef}
-                />
+                {/* <a href="">
+                    <Logo
+                        alt="Arc'teryx Logo"
+                        className='text-logo'
+                        ref={miniLogoRef}
+                    />
+                </a> */}
                 <div
                     className="nav__lang-dropdown-container"
                     ref={langMenuRef}

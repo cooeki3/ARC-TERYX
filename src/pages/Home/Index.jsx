@@ -9,13 +9,14 @@ import { SplitText } from 'gsap/SplitText';
 import GSDevTools from "gsap/GSDevTools";
 import Logo from '../../assets/images/ARCTERYX_text_logo.svg?react';
 import { SlowMo } from "gsap/EasePack";
+import ScrambleTextPlugin from 'gsap/ScrambleTextPlugin';
 
 // Lenis imports
 import { ReactLenis, useLenis } from 'lenis/react'
 import 'lenis/dist/lenis.css'
 
 
-gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools, SlowMo);
+gsap.registerPlugin(ScrollTrigger, SplitText, CustomEase, GSDevTools, SlowMo, ScrambleTextPlugin);
 
 // CSS imports
 import "../../styles/style.css";
@@ -49,6 +50,10 @@ export default function Index() {
     const heroTitleRef = useRef();
     const heroPRef = useRef();
     const langMenuRef = useRef();
+
+    const localTimeRef = useRef();
+    const hqTimeRef = useRef();
+    const [startClock, setStartClock] = useState(false);
 
     const miniLogoRef = useRef();
     const largeLogoRef = useRef();
@@ -107,11 +112,6 @@ export default function Index() {
                 //     y: window.innerHeight,
                 //     opacity: 1,
                 // })
-
-                // gsap.set(largeLogoRef.current.querySelectorAll('path, polygon'), {
-                //     fill: '#b1af99'
-                // });
-
                 // Disables scroll
                 tl.call(() => lenis?.stop(),
                     [], 0
@@ -159,12 +159,29 @@ export default function Index() {
                 }, 1.5
                 )
 
+                // Large logo transition to topnav logo
                 tl.to('.landing-logo-container', {
                     width: '100%',
                     duration: 1,
-                    ease: "power3.out"
-                }, 2
-                );
+                    ease: "power3.out",
+                    onComplete: () => {
+                        gsap.fromTo('.landing-logo-container', {
+                            width: '100%'
+                        }, {
+                            padding: '20px 60px 60px 60px',
+                            width: '18%',
+                            duration: 1.1,
+                            scrollTrigger: {
+                                trigger: '.section-hero',
+                                start: 'top top',
+                                end: () => "+=" + window.innerHeight / 4 * 3,
+                                scrub: true,
+                                // markers: true
+                            }
+                        }
+                        );
+                    }
+                }, 2);
 
                 // Enables scroll
                 tl.call(() => lenis?.start(),
@@ -233,22 +250,137 @@ export default function Index() {
                         ease: 'power4.out',
                     }, 2.9
                 )
-                tl.fromTo('.section-bottom-nav',
-                    {
-                        yPercent: 105,
-                        opacity: 0,
-                    },
-                    {
-                        yPercent: 0,
-                        opacity: 1,
-                        duration: 1.2,
-                        ease: 'power4.out',
-                    }, 2.9
-                )
+                // tl.fromTo('.section-bottom-nav',
+                //     {
+                //         yPercent: 105,
+                //         opacity: 0,
+                //     },
+                //     {
+                //         yPercent: 0,
+                //         opacity: 1,
+                //         duration: 1.2,
+                //         ease: 'power4.out',
+                //     }, 2.9
+                // )
+                //-------------------------------Scrambled text---------------------------------------
+
+
+                const localTimeText = localTimeRef.current.textContent;
+                const hqTimeText = hqTimeRef.current.textContent;
+                const TRANSITION_DURATION = 2;
+
+                gsap.set(".section-bottom-nav .col-1", {
+                    textContent: "\u00A0"
+                });
+                gsap.set(".current-time div span", {
+                    textContent: "\u00A0"
+                });
+
+
+                tl.to('.section-bottom-nav .col-1', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "©2026 Arc'teryx - Digital Experience Concept",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ2026",
+                        // speed: 0.5,
+                    }
+                }, 2.9);
+
+                // Reveal labels
+                tl.to('.row-local span:first-child', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "LOCAL TIME",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    }
+                }, 2.9);
+
+
+                // Reveal local time
+                tl.to(localTimeRef.current, {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: localTimeText,
+                        chars: "0123456789:",
+                    }
+                }, 3.3);
+
+
+                // Reveal HQ label
+                tl.to('.row-hq span:first-child', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "ARC'TERYX HQ",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    }
+                }, 3);
+
+
+                // Reveal HQ time
+                tl.to(hqTimeRef.current, {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: hqTimeText,
+                        chars: "0123456789:",
+                    }
+                }, 3.4);
+
+
+                // Reveal rest
+                tl.to('.row-location span:first-child', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "BASE LOCATION",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    }
+                }, 3.1);
+
+                tl.to('.row-location span:nth-child(2)', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "NORTH VANCOUVER, CANADA",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ, ",
+                    }
+                }, 3.5);
+
+
+                tl.to('.row-coordinates span:first-child', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "COORDINATES",
+                        chars: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+                    }
+                }, 3.2);
+
+                tl.to('.row-coordinates span:nth-child(2)', {
+                    duration: TRANSITION_DURATION,
+                    ease: 'power4.out',
+                    scrambleText: {
+                        text: "49.3206° N / 122.9540° W",
+                        chars: "0123456789°N/W. ",
+                    }
+                }, 3.6);
+
+                tl.call(() => {
+                    setStartClock(true);
+                }, [], 3.9);
+
+
+                // GSDevTools.create({
+                //     animation: tl,
+                // });
             }
-            // GSDevTools.create({
-            //     animation: tl,
-            // });
+
+            // Large logo transition to topnav logo
+
 
             // Mini-logo display
             gsap.set(miniLogoRef.current, {
@@ -287,19 +419,23 @@ export default function Index() {
 
     return (
         <>
-            <CustomCursor />
+            <TopNav
+                langMenuRef={langMenuRef}
+                miniLogoRef={miniLogoRef}
+                sectionCollectionRef={sectionCollectionRef}
+            />
+            {/* <CustomCursor /> */}
             <section className="page-wrapper">
                 <div className="landing-bg" ref={landingBGRef}></div>
-                <TopNav
-                    langMenuRef={langMenuRef}
-                    miniLogoRef={miniLogoRef}
-                    sectionCollectionRef={sectionCollectionRef}
-                />
                 <div className='landing-logo-container'>
                     <Logo ref={largeLogoRef} />
                 </div>
                 <MenuNav />
-                <BottomNav />
+                <BottomNav
+                    localTimeRef={localTimeRef}
+                    hqTimeRef={hqTimeRef}
+                    startClock={startClock}
+                />
                 <Hero
                     heroTitleRef={heroTitleRef}
                     heroPRef={heroPRef}

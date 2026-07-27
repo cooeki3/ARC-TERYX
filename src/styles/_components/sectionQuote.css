@@ -104,11 +104,10 @@
 
     .quote-inline-img {
       display: inline-flex;
+      align-items: center; /* center images against their own flex box, not the line's font metrics */
       flex-shrink: 0;
-      /* height: clamp(10px, 8vw, 70px); */
       width: 0%;
-      vertical-align: middle;
-      /* margin: 0 0.15em; */
+      vertical-align: -0.15em; /* small manual nudge instead of "middle" */
       transform-origin: center;
 
       img {

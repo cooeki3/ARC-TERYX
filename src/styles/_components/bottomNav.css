@@ -21,6 +21,7 @@
   }
   .col-1 {
     font-family: var(--font-pixel-grid);
+    width: 40%;
     a {
       pointer-events: all;
     }
@@ -29,7 +30,13 @@
     font-family: var(--font-pixel-grid);
   }
 
-  @media (max-width: 1100px) {
+  @media (max-width: 1400px) {
+    .col-1 {
+      width: 30%;
+    }
+  }
+
+  @media (max-width: 1400px) {
     display: none;
   }
 }

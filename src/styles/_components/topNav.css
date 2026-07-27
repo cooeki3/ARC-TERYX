@@ -4,12 +4,12 @@
   top: 0;
   grid-template-columns: 1fr auto 1fr;
   justify-content: space-between;
-  align-items: center;
+  align-items: start;
   z-index: 1000;
   margin-top: 20px;
   padding: 0 60px;
   width: 100%;
-  height: fit-content;
+  /* height: fit-content; */
   user-select: none;
 
   .text-logo {
@@ -17,12 +17,13 @@
     width: 150px;
     height: auto;
     opacity: 0;
-
+    fill: var(--secondary-text);
   }
 
   .nav__lang-dropdown-container {
     width: fit-content;
-    justify-self: flex-end;
+    justify-self: end;
+    grid-column: 3;
     opacity: 0;
   }
 

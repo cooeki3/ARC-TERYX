@@ -23,9 +23,10 @@
 
 .landing-logo-container {
   pointer-events: none;
-  position: absolute;
+  position: fixed;
   padding: 60px;
-  width: 15vw;
+  /* width: 15vw; */
+  min-width: 300px;
   left: 50%;
   transform: translateX(-50%);
   height: auto;
@@ -33,5 +34,6 @@
   mix-blend-mode: difference;
   svg {
     fill: #ffffff;
+    opacity: 0;
   }
 }

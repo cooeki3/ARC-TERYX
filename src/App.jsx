@@ -13,6 +13,15 @@ import 'lenis/dist/lenis.css'
 import "@fontsource-variable/geist";
 
 function App() {
+  // Check Mobile Click
+  // useEffect(() => {
+  //   const logTarget = (e) => {
+  //     const el = document.elementFromPoint(e.clientX, e.clientY);
+  //     alert(el?.className || el?.tagName || 'nothing found');
+  //   };
+  //   document.addEventListener('click', logTarget, true);
+  //   return () => document.removeEventListener('click', logTarget, true);
+  // }, []);
   // ------------------------------------Lenis ini.-------------------------------
   const lenis = useLenis((lenis) => { })
   return (

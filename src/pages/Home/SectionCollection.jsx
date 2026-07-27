@@ -53,11 +53,9 @@ function SectionCollection({ sectionCollectionRef }) {
     gsap.fromTo(sectionCollectionRef.current, {
       yPercent: '30',
       scale: 0.8,
-      // borderRadius: '100px'
     }, {
       yPercent: '-40',
       scale: 1,
-      // borderRadius: '0px',
       ease: 'power4.out',
       scrollTrigger: {
         trigger: '.section-hero',
@@ -67,18 +65,6 @@ function SectionCollection({ sectionCollectionRef }) {
       }
     })
     gsap.fromTo('.section-hero', {
-      filter: 'brightness(1) blur(0px)',
-    }, {
-      filter: 'brightness(0.5) blur(3px)',
-      ease: 'power4.out',
-      scrollTrigger: {
-        trigger: '.section-hero',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-      }
-    })
-    gsap.fromTo('.landing-logo-container', {
       filter: 'brightness(1) blur(0px)',
     }, {
       filter: 'brightness(0.5) blur(3px)',
@@ -136,7 +122,6 @@ function SectionCollection({ sectionCollectionRef }) {
       },
       {
         yPercent: 0,
-
         duration: 1.1,
         ease: "power4.out",
         stagger: 0.08,
@@ -153,7 +138,6 @@ function SectionCollection({ sectionCollectionRef }) {
         transform: 'scaleX(1)',
         opacity: 1,
         yPercent: 0,
-
         duration: 1.1,
         ease: "power4.out",
         stagger: 0.08,
@@ -168,7 +152,6 @@ function SectionCollection({ sectionCollectionRef }) {
       {
         opacity: 1,
         yPercent: 0,
-
         duration: 1.1,
         ease: "power4.out",
         stagger: 0.08,
@@ -220,8 +203,10 @@ function SectionCollection({ sectionCollectionRef }) {
       }, 0
     )
 
-    // Cards hover anim.
+    // -------------------------- Cards hover/tap anim. --------------------------
     const cards = document.querySelectorAll('.section-collection-card');
+    const isTouchDevice = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
+    const cardAnimators = new Map();
 
     cards.forEach((card) => {
       const cardImg = card.querySelector('.section-collection-card-bg');
@@ -283,19 +268,53 @@ function SectionCollection({ sectionCollectionRef }) {
         })
       }
 
-      card.addEventListener('mouseenter', hoverIn);
-      card.addEventListener('mouseleave', hoverOut);
+      cardAnimators.set(card, { hoverIn, hoverOut });
+
+      if (!isTouchDevice) {
+        card.addEventListener('mouseenter', hoverIn);
+        card.addEventListener('mouseleave', hoverOut);
+      }
     })
 
+    let handleTap;
+    if (isTouchDevice) {
+      handleTap = (swiperInstance) => {
+        const tappedSlide = swiperInstance.clickedSlide;
+        if (!tappedSlide) return;
+
+        const card = tappedSlide.matches('.section-collection-card')
+          ? tappedSlide
+          : tappedSlide.querySelector('.section-collection-card');
+        if (!card) return;
+
+        const isActive = card.classList.contains('is-active');
+
+        // close any other open card first
+        cards.forEach((c) => {
+          if (c !== card && c.classList.contains('is-active')) {
+            c.classList.remove('is-active');
+            cardAnimators.get(c)?.hoverOut();
+          }
+        });
+
+        card.classList.toggle('is-active', !isActive);
+        isActive ? cardAnimators.get(card)?.hoverOut() : cardAnimators.get(card)?.hoverIn();
+      };
+
+      swiper.on('tap', handleTap);
+    }
+
     // ScrollTrigger.refresh();
-    return () => swiper.destroy(true, true);
+    return () => {
+      if (isTouchDevice && handleTap) swiper.off('tap', handleTap);
+      swiper.destroy(true, true);
+    };
   }, [])
 
   return (
     <div className='section-collection' ref={sectionCollectionRef} data-logo='black'>
       <div className='section-collection-text'>
         <h1 className='section-collection-h1' ref={collectionH1Ref}>Winter ‘26 collection</h1>
-        {/* <div className='section-collection-p'>Korem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate libero et velit interdum, ac aliquet odio mattis. </div> */}
         <button className='section-collection-button' ref={collectionBtnRef}>Learn more</button>
       </div>
 
