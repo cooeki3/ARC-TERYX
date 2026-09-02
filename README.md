@@ -1,7 +1,7 @@
 # Arc’teryx Redesign
 ### Français
 
-# Projet personnel réalisé dans un cadre d’apprentissage, sans affiliation officielle ni vocation commerciale. Les éléments visuels et de marque utilisés dans ce projet appartiennent à leurs propriétaires respectifs.
+Projet personnel réalisé dans un cadre d’apprentissage, sans affiliation officielle ni vocation commerciale. Les éléments visuels et de marque utilisés dans ce projet appartiennent à leurs propriétaires respectifs.
 
 ### English
 
